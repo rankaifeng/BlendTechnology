@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--登录按钮效果(登录，取消关注,绑定默认司机)-->
+         <selector xmlns:android="http://schemas.android.com/apk/res/android"> 
+             <item android:state_pressed="true" android:drawable="@drawable/shape_blue_entable" />
+             <item android:state_focused="true" android:drawable="@drawable/shape_blue_entable"/>
+             <item android:drawable="@drawable/shape_blue_border" />
+         </selector>  

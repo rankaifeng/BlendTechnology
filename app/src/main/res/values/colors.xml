@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="blue_color">#0079c0</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="grey_color">#f1eeee</color>
+    <color name="md_grey_700">#616161</color>
+    <color name="color_white">#ffffff</color>
+    <color name="shape_count_down_bg">#88000000</color>
+</resources>
