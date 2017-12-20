@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--注册按钮效果-->
-         <selector xmlns:android="http://schemas.android.com/apk/res/android"> 
-             <item android:state_pressed="true" android:drawable="@drawable/line_box_press" />
-             <item android:state_focused="true" android:drawable="@drawable/line_box_press"/>
-             <item android:drawable="@drawable/line_box" />
-         </selector>  
+<?xml version="1.0" encoding="utf-8"?><!--注册按钮效果-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/line_box_press"
+        android:state_pressed="true" />
+    <item android:drawable="@drawable/line_box_press"
+        android:state_focused="true" />
+    <item android:drawable="@drawable/line_box" />
+</selector>

@@ -2,13 +2,13 @@ package com.blend.technology.base;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -91,7 +91,8 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
     protected void changTitleBar() {
         String childClassName = getChildClassName();
         if (childClassName.equals(CLASS_NAME)) {
-            ViewUtil.initSystemBar(this, Color.parseColor("#00000000"));
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
         } else {
             isShow = true;
             ViewUtil.initSystemBar(this, R.color.colorPrimary);
