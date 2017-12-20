@@ -54,6 +54,7 @@ public class FlashActivity extends BaseCompatActivity {
         tvVersionName.setText(AppUtils.getAppversionName(this));
         btnGo.setOnClickListener(v -> startActivity(LoginActivity.class));
         initViewPager();
+
         initPoint();
         /**
          * 监听小圆点
