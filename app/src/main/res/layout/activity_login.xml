@@ -1,48 +1,102 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
-    <TextView
-        android:id="@+id/tv_name"
+    <com.blend.technology.widgets.BlurredView
+        android:id="@+id/blurr_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:src="@mipmap/login" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="显示用户名"
-        android:padding="20dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textColorHint="@color/blue_color" />
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#66CCFF" />
 
-    <TextView
-        android:id="@+id/tv_pwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="显示密码"
-        android:padding="20dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textColorHint="@color/blue_color" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="15dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#66CCFF" />
+            <ImageView
+                android:id="@+id/img_login_name"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/user_name" />
 
-    <Button
-        android:id="@+id/btn_request"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/new_rp_shape_button"
-        android:text="获取服务器数据"
-        android:textColor="#ffffff"
-        android:textSize="15sp" />
-</LinearLayout>
+            <EditText
+                android:id="@+id/edit_login_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/img_login_name"
+                android:background="@null"
+                android:hint="@string/login_userName"
+                android:textColor="@color/color_white"
+                android:textColorHint="@color/color_white"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#66CCFF" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/img_login_pwd"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/pwd" />
+
+            <EditText
+                android:id="@+id/edit_login_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/img_login_pwd"
+                android:background="@null"
+                android:hint="@string/login_user_pwd"
+                android:textColor="@color/white_color"
+                android:password="true"
+                android:textColorHint="@color/color_white"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#66CCFF" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_blue_entable"
+            android:text="@string/login_text"
+            android:textColor="@color/white_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+</FrameLayout>

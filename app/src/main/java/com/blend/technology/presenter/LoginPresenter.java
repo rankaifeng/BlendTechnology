@@ -3,8 +3,10 @@ package com.blend.technology.presenter;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 
+import com.blend.technology.base.BaseCompatActivity;
 import com.blend.technology.base.BaseDisposable;
-import com.blend.technology.bean.UserInfoOut;
+import com.blend.technology.bean.LoginIn;
+import com.blend.technology.bean.LoginOut;
 import com.blend.technology.model.imp.LoginModelImp;
 import com.blend.technology.utils.LoginContract;
 
@@ -28,12 +30,17 @@ public class LoginPresenter extends LoginContract.LoginPresenter {
     }
 
     @Override
-    public void login(Activity activity) {
-        Observable<UserInfoOut> login = mModel.login();
-        mRxManager.register(new BaseDisposable<UserInfoOut>(activity) {
+    public void login(Activity activity, LoginIn loginIn) {
+        Observable<LoginOut> login = mModel.login(loginIn);
+        mRxManager.register(new BaseDisposable<LoginOut>(activity) {
             @Override
-            protected void requestSuccess(UserInfoOut out) {
-                mView.loginSuess(out);
+            protected void requestSuccess(LoginOut out) {
+                if (out.getMsg().equals("OK")) {
+                    mView.loginSuess(out);
+                } else {
+                    ((BaseCompatActivity) activity).showToast(out.getMsg());
+                    ((BaseCompatActivity) activity).hideProgress();
+                }
             }
         }.requestDisposable(login));
     }

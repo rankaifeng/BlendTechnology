@@ -5,16 +5,15 @@ package com.blend.technology.bean;
  */
 
 public class LoginIn {
-    private String usercode;
+    private String userCode;
     private String password;
-    private String plat_id;
 
-    public String getUsercode() {
-        return usercode;
+    public String getUserCode() {
+        return userCode;
     }
 
-    public void setUsercode(String usercode) {
-        this.usercode = usercode;
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 
     public String getPassword() {
@@ -23,13 +22,5 @@ public class LoginIn {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPlat_id() {
-        return plat_id;
-    }
-
-    public void setPlat_id(String plat_id) {
-        this.plat_id = plat_id;
     }
 }

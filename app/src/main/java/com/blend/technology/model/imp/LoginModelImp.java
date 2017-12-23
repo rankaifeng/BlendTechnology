@@ -4,7 +4,8 @@ import android.support.annotation.NonNull;
 
 import com.blend.technology.api.UserInfoApi;
 import com.blend.technology.base.BaseModel;
-import com.blend.technology.bean.UserInfoOut;
+import com.blend.technology.bean.LoginIn;
+import com.blend.technology.bean.LoginOut;
 import com.blend.technology.helper.RetrofitCreateHelper;
 import com.blend.technology.helper.RxHelper;
 import com.blend.technology.utils.LoginContract;
@@ -23,8 +24,8 @@ public class LoginModelImp extends BaseModel implements LoginContract.LoginModel
     }
 
     @Override
-    public Observable<UserInfoOut> login() {
-        return RetrofitCreateHelper.createApi(UserInfoApi.class).login()
-                .compose(RxHelper.<UserInfoOut>rxSchedulerHelper());
+    public Observable<LoginOut> login(LoginIn loginIn) {
+        return RetrofitCreateHelper.createApi(UserInfoApi.class).login(loginIn)
+                .compose(RxHelper.<LoginOut>rxSchedulerHelper());
     }
 }

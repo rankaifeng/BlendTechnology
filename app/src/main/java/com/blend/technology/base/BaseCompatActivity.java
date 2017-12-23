@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,12 +19,13 @@ import com.blend.technology.utils.ViewUtil;
 import com.blend.technology.widgets.MyDiglog;
 
 import butterknife.ButterKnife;
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by rankaifeng on 2017/12/15.
  */
 
-public abstract class BaseCompatActivity extends AppCompatActivity {
+public abstract class BaseCompatActivity extends SupportActivity {
     private static final String CLASS_NAME = "FlashActivity";
     private TextView m_ActionTitle;
     private RelativeLayout m_ActionLeft;
@@ -90,7 +90,7 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
 
     protected void changTitleBar() {
         String childClassName = getChildClassName();
-        if (childClassName.equals(CLASS_NAME)) {
+        if (childClassName.equals(CLASS_NAME) || childClassName.equals("LoginActivity")) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         } else {
