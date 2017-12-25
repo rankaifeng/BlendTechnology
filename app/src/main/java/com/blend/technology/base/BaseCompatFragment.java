@@ -90,8 +90,8 @@ public abstract class BaseCompatFragment extends SupportFragment {
      */
     public abstract void initUI(View view, @Nullable Bundle savedInstanceState);
 
-
     /**
+
      * 处理回退事件
      *
      * @return true 事件已消费

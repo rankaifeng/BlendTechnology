@@ -35,7 +35,7 @@ public class FoodFragment extends
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mIPresenter.getFoods(getActivity());
+//        mIPresenter.getFoods(getActivity());
     }
 
     @Override

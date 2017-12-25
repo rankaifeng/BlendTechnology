@@ -114,39 +114,31 @@ public abstract class BaseCompatActivity extends SupportActivity {
         assert actionBar != null;
         actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(customerActionBar, params);
-        m_ActionLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (m_ActionLeftImg.getVisibility() == View.GONE && m_ActionLeftTxt.getVisibility() == View.GONE) {
-                    return;
-                }
-                if (mCanGoBack) {
-                    onBackPressed();
+        m_ActionLeft.setOnClickListener(v -> {
+            if (m_ActionLeftImg.getVisibility() == View.GONE && m_ActionLeftTxt.getVisibility() == View.GONE) {
+                return;
+            }
+            if (mCanGoBack) {
+                onBackPressed();
+            } else {
+                if (m_ActionLeftImg.getVisibility() == View.GONE) {
+                    onActionLeftTextClick();
+                } else if (m_ActionLeftTxt.getVisibility() == View.GONE) {
+                    onActionLeftImageClick();
                 } else {
-                    if (m_ActionLeftImg.getVisibility() == View.GONE) {
-                        onActionLeftTextClick();
-                    } else if (m_ActionLeftTxt.getVisibility() == View.GONE) {
-                        onActionLeftImageClick();
-                    } else {
-                        onActionLeftImageClick();
-                    }
+                    onActionLeftImageClick();
                 }
             }
-
         });
 
         /**
          * 右侧事件响应
          */
-        m_ActionRight.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (m_ActionRightImg.getVisibility() == View.VISIBLE) {
-                    onActionRightImageClick();
-                } else if (m_ActionRightTxt.getVisibility() == View.VISIBLE) {
-                    onActionRightTextClick();
-                }
+        m_ActionRight.setOnClickListener(v -> {
+            if (m_ActionRightImg.getVisibility() == View.VISIBLE) {
+                onActionRightImageClick();
+            } else if (m_ActionRightTxt.getVisibility() == View.VISIBLE) {
+                onActionRightTextClick();
             }
         });
     }
