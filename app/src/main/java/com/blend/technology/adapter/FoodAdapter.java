@@ -8,6 +8,7 @@ import com.blend.technology.bean.FoodOut;
 import com.blend.technology.widgets.RatioImageView;
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,8 @@ import java.util.List;
 public class FoodAdapter extends PublicAdapter<FoodOut.Data> {
     Context mContext;
     List<FoodOut.Data> dataList;
+    private List<Integer> mHeights = new ArrayList<>();
+    private List<Integer> mWidths = new ArrayList<>();
 
     public FoodAdapter(Context context, int layoutId, List<FoodOut.Data> datas) {
         super(context, layoutId, datas);
@@ -26,9 +29,14 @@ public class FoodAdapter extends PublicAdapter<FoodOut.Data> {
 
     @Override
     public void convert(BaseViewHolder holder, int position) {
-        holder.setText(R.id.frg_food_title, dataList.get(position).getTitle());
+        // 随机高度, 模拟瀑布效果.
+        if (mHeights.size() <= position) {
+            mHeights.add((int) (300 + Math.random() * 100));
+            mWidths.add((int) (300 + Math.random() * 100));
+        }
         RatioImageView mImageView = holder.getView(R.id.frg_food_img);
-        mImageView.setOriginalSize(50,50);
+        holder.setText(R.id.frg_food_title, dataList.get(position).getTitle());
+        mImageView.setOriginalSize(mWidths.get(position), mHeights.get(position));
         Glide.with(mContext).load(dataList.get(position).getImgUrl()).into(mImageView);
     }
 }

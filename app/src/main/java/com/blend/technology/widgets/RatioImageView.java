@@ -1,6 +1,17 @@
 package com.blend.technology.widgets;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -11,7 +22,6 @@ import android.widget.ImageView;
 public class RatioImageView extends ImageView {
     private int originalWidth;
     private int originalHeight;
-
 
     public RatioImageView(Context context) {
         super(context);
@@ -34,13 +44,13 @@ public class RatioImageView extends ImageView {
     }
 
 
-    @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (originalWidth > 0 && originalHeight > 0) {
             float ratio = (float) originalWidth / (float) originalHeight;
 
             int width = MeasureSpec.getSize(widthMeasureSpec);
             int height = MeasureSpec.getSize(heightMeasureSpec);
-            // TODO: 现在只支持固定宽度
             if (width > 0) {
                 height = (int) ((float) width / ratio);
             }
