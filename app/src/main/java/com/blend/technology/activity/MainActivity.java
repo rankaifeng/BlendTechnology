@@ -22,7 +22,6 @@ public class MainActivity extends BaseCompatActivity {
     @BindView(R.id.bottom_naviga)
     BottomNavigationView bottomNavigate;
     private long exitTime;
-
     private SupportFragment[] mFragments = new SupportFragment[4];
 
     @Override

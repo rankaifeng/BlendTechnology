@@ -7,20 +7,30 @@ import java.util.List;
  */
 
 public class FoodOut {
-    List<Data> data;
+    private String msg;
+    List<Data> arrayList;
 
-    public List<Data> getData() {
-        return data;
+
+    public String getMsg() {
+        return msg;
     }
 
-    public void setData(List<Data> data) {
-        this.data = data;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    class Data{
+    public List<Data> getArrayList() {
+        return arrayList;
+    }
+
+    public void setArrayList(List<Data> arrayList) {
+        this.arrayList = arrayList;
+    }
+
+    public class Data{
         private String id;
         private String title;
-        private String albums;
+        private String imgUrl;
 
         public String getId() {
             return id;
@@ -38,12 +48,12 @@ public class FoodOut {
             this.title = title;
         }
 
-        public String getAlbums() {
-            return albums;
+        public String getImgUrl() {
+            return imgUrl;
         }
 
-        public void setAlbums(String albums) {
-            this.albums = albums;
+        public void setImgUrl(String imgUrl) {
+            this.imgUrl = imgUrl;
         }
     }
 }
