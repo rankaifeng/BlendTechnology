@@ -6,10 +6,12 @@ import android.widget.EditText;
 import com.blend.technology.R;
 import com.blend.technology.base.BaseMVPCompatActivity;
 import com.blend.technology.base.BasePresenter;
+import com.blend.technology.bean.LoginIn;
 import com.blend.technology.bean.LoginOut;
+import com.blend.technology.contract.LoginContract;
 import com.blend.technology.presenter.LoginPresenter;
 import com.blend.technology.utils.Config;
-import com.blend.technology.utils.LoginContract;
+import com.blend.technology.utils.StringUtils;
 import com.blend.technology.widgets.BlurredView;
 
 import butterknife.BindView;
@@ -41,21 +43,20 @@ public class LoginActivity extends BaseMVPCompatActivity<LoginContract.LoginPres
     public void initV() {
         blurrImg.setBlurredLevel(Config.TAG_NUMBER);
         btnLogin.setOnClickListener(v -> {
-//            editStrName = editLoginName.getText().toString();
-//            editStrPwd = editLoginPwd.getText().toString();
-//            if (StringUtils.isEmpty(editStrName)) {
-//                showToast("请输入用户名");
-//                return;
-//            }
-//            if (StringUtils.isEmpty(editStrPwd)) {
-//                showToast("请输入密码");
-//                return;
-//            }
-//            LoginIn loginIn = new LoginIn();
-//            loginIn.setUserCode(editStrName);
-//            loginIn.setPassword(editStrPwd);
-//            mIPresenter.login(LoginActivity.this, loginIn);
-            startActivity(MainActivity.class);
+            editStrName = editLoginName.getText().toString();
+            editStrPwd = editLoginPwd.getText().toString();
+            if (StringUtils.isEmpty(editStrName)) {
+                showToast("请输入用户名");
+                return;
+            }
+            if (StringUtils.isEmpty(editStrPwd)) {
+                showToast("请输入密码");
+                return;
+            }
+            LoginIn loginIn = new LoginIn();
+            loginIn.setUserCode(editStrName);
+            loginIn.setPassword(editStrPwd);
+            mIPresenter.login(LoginActivity.this, loginIn);
         });
     }
 

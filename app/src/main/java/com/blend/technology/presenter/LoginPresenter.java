@@ -8,7 +8,7 @@ import com.blend.technology.base.BaseDisposable;
 import com.blend.technology.bean.LoginIn;
 import com.blend.technology.bean.LoginOut;
 import com.blend.technology.model.imp.LoginModelImp;
-import com.blend.technology.utils.LoginContract;
+import com.blend.technology.contract.LoginContract;
 
 import io.reactivex.Observable;
 

@@ -8,7 +8,7 @@ import com.blend.technology.bean.LoginIn;
 import com.blend.technology.bean.LoginOut;
 import com.blend.technology.helper.RetrofitCreateHelper;
 import com.blend.technology.helper.RxHelper;
-import com.blend.technology.utils.LoginContract;
+import com.blend.technology.contract.LoginContract;
 
 import io.reactivex.Observable;
 
@@ -26,6 +26,6 @@ public class LoginModelImp extends BaseModel implements LoginContract.LoginModel
     @Override
     public Observable<LoginOut> login(LoginIn loginIn) {
         return RetrofitCreateHelper.createApi(UserInfoApi.class).login(loginIn)
-                .compose(RxHelper.<LoginOut>rxSchedulerHelper());
+                .compose(RxHelper.rxSchedulerHelper());
     }
 }
