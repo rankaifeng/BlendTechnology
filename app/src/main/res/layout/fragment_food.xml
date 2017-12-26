@@ -5,9 +5,9 @@
     android:orientation="vertical">
 
 
-    <com.blend.technology.widgets.WrapRecyclerView
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/fra_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blend.technology.base.BaseViewHolder;
+import com.blend.technology.utils.AnimRecyclerViewAdapter;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by rankaifeng on 2017/9/28.
  */
 
-public abstract class PublicAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
+public abstract class PublicAdapter<T> extends AnimRecyclerViewAdapter<BaseViewHolder> {
     protected Context mContext;
     protected int mLayoutId;
     protected List<T> mDatas;
