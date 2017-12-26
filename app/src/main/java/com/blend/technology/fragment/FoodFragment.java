@@ -3,8 +3,8 @@ package com.blend.technology.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.blend.technology.R;
@@ -14,7 +14,11 @@ import com.blend.technology.base.BasePresenter;
 import com.blend.technology.bean.FoodOut;
 import com.blend.technology.contract.FoodContract;
 import com.blend.technology.presenter.FoodPresenter;
+import com.blend.technology.utils.GlideImageLoader;
 import com.blend.technology.utils.SpacesItemDecoration;
+import com.blend.technology.widgets.WrapRecyclerView;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +33,12 @@ public class FoodFragment extends
         BaseMVPCompatFragment<FoodContract.FoodPresenter, FoodContract.FoodModel>
         implements FoodContract.FoodView {
     @BindView(R.id.fra_recycler)
-    RecyclerView mRecyclerView;
+    WrapRecyclerView mRecyclerView;
     private FoodAdapter foodAdapter;
     private List<FoodOut.Data> dataList = new ArrayList<>();
+    private Banner mBanner;
+    private List<String> imageViews = new ArrayList<>();
+    private List<String> titileList = new ArrayList<>();
 
     public static FoodFragment newInstance() {
         Bundle args = new Bundle();
@@ -47,15 +54,13 @@ public class FoodFragment extends
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        mIPresenter.getFoods(getActivity());
-        foodAdapter = new FoodAdapter(getActivity(), R.layout.fragment_food_item, dataList);
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL));
+        foodAdapter = new FoodAdapter(getActivity(), R.layout.fragment_food_item, dataList);
         mRecyclerView.setAdapter(foodAdapter);
-
-        //设置item之间的间隔
         SpacesItemDecoration decoration = new SpacesItemDecoration(16);
         mRecyclerView.addItemDecoration(decoration);
+        mIPresenter.getFoods(getActivity());
     }
 
 
@@ -68,6 +73,19 @@ public class FoodFragment extends
     @Override
     public void requestSuesses(FoodOut foodOut) {
         dataList.addAll(foodOut.getArrayList());
-        foodAdapter.notifyDataSetChanged();
+        for (int i = 0; i < 4; i++) {
+            imageViews.add(foodOut.getArrayList().get(i).getImgUrl());
+            titileList.add(foodOut.getArrayList().get(i).getTitle());
+        }
+        // TODO: 2017/12/26 添加头部布局
+        View headView = LayoutInflater.from(getActivity())
+                .inflate(R.layout.fragment_banner, null);
+        mBanner = (Banner) headView.findViewById(R.id.banner);
+        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        mBanner.setBannerTitles(titileList);
+        mBanner.setImageLoader(new GlideImageLoader());
+        mBanner.setImages(imageViews);
+        mBanner.start();
+        mRecyclerView.addHeaderView(headView);
     }
 }

@@ -29,14 +29,14 @@ public class FoodAdapter extends PublicAdapter<FoodOut.Data> {
 
     @Override
     public void convert(BaseViewHolder holder, int position) {
-        // 随机高度, 模拟瀑布效果.
-        if (mHeights.size() <= position) {
-            mHeights.add((int) (300 + Math.random() * 100));
-            mWidths.add((int) (300 + Math.random() * 100));
-        }
         RatioImageView mImageView = holder.getView(R.id.frg_food_img);
         holder.setText(R.id.frg_food_title, dataList.get(position).getTitle());
-        mImageView.setOriginalSize(mWidths.get(position), mHeights.get(position));
+        mImageView.setOriginalSize(50, 50);
         Glide.with(mContext).load(dataList.get(position).getImgUrl()).into(mImageView);
+        // 随机高度, 模拟瀑布效果.
+//        if (mHeights.size() <= position) {
+//            mHeights.add((int) (300 + Math.random() * 100));
+//            mWidths.add((int) (300 + Math.random() * 100));
+//        }
     }
 }

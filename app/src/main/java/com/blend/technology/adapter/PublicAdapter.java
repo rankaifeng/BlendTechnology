@@ -28,8 +28,12 @@ public abstract class PublicAdapter<T> extends RecyclerView.Adapter<BaseViewHold
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final BaseViewHolder viewHolder = new BaseViewHolder(mContext, mLayoutId, parent);
-        return viewHolder;
+        return new BaseViewHolder(mContext, mLayoutId, parent);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     public void setData(List<T> data) {
@@ -56,6 +60,7 @@ public abstract class PublicAdapter<T> extends RecyclerView.Adapter<BaseViewHold
         mDatas.clear();
         notifyDataSetChanged();
     }
+
 
     @Override
     public void onBindViewHolder(final BaseViewHolder holder, final int position) {
