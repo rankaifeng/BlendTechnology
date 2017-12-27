@@ -24,14 +24,12 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseCompatActivity extends SupportActivity {
     private static final String CLASS_NAME = "FlashActivity";
-    private TextView m_ActionTitle;
-    private RelativeLayout m_ActionLeft;
-    private ImageView m_ActionLeftImg;
-    private TextView m_ActionLeftTxt;
-    private RelativeLayout m_ActionRight;
-    private ImageView m_ActionRightImg;
-    private TextView m_ActionRightTxt;
-    private TextView m_numCount;
+    private TextView mActionTitle;
+    private ImageView mActionLeftImg;
+    private TextView mActionLeftTxt;
+    private ImageView mActionRightImg;
+    private TextView mActionRightTxt;
+    private TextView mnumCount;
     //左侧是否可以返回
     protected boolean mCanGoBack = true;
     protected boolean isShow = false;
@@ -56,7 +54,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
      * @param msg 自定义消息
      */
     public void showProgress(String msg) {
-        if (BaseCompatActivity.this != null && !BaseCompatActivity.this.isFinishing()) {
+        if (!BaseCompatActivity.this.isFinishing()) {
             progressDlg = MyDiglog.createLoadingDialog(BaseCompatActivity.this, msg, false);
         }
     }
@@ -66,12 +64,12 @@ public abstract class BaseCompatActivity extends SupportActivity {
     }
 
     public void showToast(String msg, boolean status) {
-        if (status == true) {
+        if (status) {
             toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
-        if (status == false) {
+        if (!status) {
             toast.cancel();
         }
     }
@@ -98,29 +96,30 @@ public abstract class BaseCompatActivity extends SupportActivity {
 
     public void defaultActionBar() {
         View customerActionBar = getLayoutInflater().inflate(R.layout.baseactivity_bar_layout, null);
-        m_ActionTitle = (TextView) customerActionBar.findViewById(R.id.txt_title);
-        m_ActionLeft = (RelativeLayout) customerActionBar.findViewById(R.id.relative_left);
-        m_ActionLeftTxt = (TextView) customerActionBar.findViewById(R.id.txt_left);
-        m_ActionLeftImg = (ImageView) customerActionBar.findViewById(R.id.img_back);
-        m_ActionRight = (RelativeLayout) customerActionBar.findViewById(R.id.relative_right);
-        m_ActionRightImg = (ImageView) customerActionBar.findViewById(R.id.img_right);
-        m_ActionRightTxt = (TextView) customerActionBar.findViewById(R.id.txt_right);
-        m_numCount = (TextView) customerActionBar.findViewById(R.id.tv_numcount);
+        mActionTitle = (TextView) customerActionBar.findViewById(R.id.txt_title);
+        RelativeLayout mActionLeft = (RelativeLayout) customerActionBar.findViewById(R.id.relative_left);
+        mActionLeftTxt = (TextView) customerActionBar.findViewById(R.id.txt_left);
+        mActionLeftImg = (ImageView) customerActionBar.findViewById(R.id.img_back);
+        RelativeLayout mActionRight = (RelativeLayout) customerActionBar.findViewById(R.id.relative_right);
+        mActionRightImg = (ImageView) customerActionBar.findViewById(R.id.img_right);
+        mActionRightTxt = (TextView) customerActionBar.findViewById(R.id.txt_right);
+        mnumCount = (TextView) customerActionBar.findViewById(R.id.tv_numcount);
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT, Gravity.LEFT);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(customerActionBar, params);
-        m_ActionLeft.setOnClickListener(v -> {
-            if (m_ActionLeftImg.getVisibility() == View.GONE && m_ActionLeftTxt.getVisibility() == View.GONE) {
+        mActionLeft.setOnClickListener(v -> {
+            if (mActionLeftImg.getVisibility() == View.GONE
+                    && mActionLeftTxt.getVisibility() == View.GONE) {
                 return;
             }
             if (mCanGoBack) {
                 onBackPressed();
             } else {
-                if (m_ActionLeftImg.getVisibility() == View.GONE) {
+                if (mActionLeftImg.getVisibility() == View.GONE) {
                     onActionLeftTextClick();
-                } else if (m_ActionLeftTxt.getVisibility() == View.GONE) {
+                } else if (mActionLeftTxt.getVisibility() == View.GONE) {
                     onActionLeftImageClick();
                 } else {
                     onActionLeftImageClick();
@@ -131,91 +130,91 @@ public abstract class BaseCompatActivity extends SupportActivity {
         /**
          * 右侧事件响应
          */
-        m_ActionRight.setOnClickListener(v -> {
-            if (m_ActionRightImg.getVisibility() == View.VISIBLE) {
+        mActionRight.setOnClickListener(v -> {
+            if (mActionRightImg.getVisibility() == View.VISIBLE) {
                 onActionRightImageClick();
-            } else if (m_ActionRightTxt.getVisibility() == View.VISIBLE) {
+            } else if (mActionRightTxt.getVisibility() == View.VISIBLE) {
                 onActionRightTextClick();
             }
         });
     }
 
     private void toggleActionLeftImg(boolean toggle) {
-        if (m_ActionLeftImg != null) {
+        if (mActionLeftImg != null) {
             if (toggle) {
-                m_ActionLeftImg.setVisibility(View.VISIBLE);
+                mActionLeftImg.setVisibility(View.VISIBLE);
             } else {
-                m_ActionLeftImg.setVisibility(View.GONE);
+                mActionLeftImg.setVisibility(View.GONE);
             }
         }
     }
 
     private void toggleActionLeftText(boolean toggle) {
-        if (m_ActionLeftTxt != null) {
+        if (mActionLeftTxt != null) {
             if (toggle) {
-                m_ActionLeftTxt.setVisibility(View.VISIBLE);
+                mActionLeftTxt.setVisibility(View.VISIBLE);
             } else {
-                m_ActionLeftTxt.setVisibility(View.GONE);
+                mActionLeftTxt.setVisibility(View.GONE);
             }
         }
     }
 
 
     private void toggleActionRightImg(boolean toggle) {
-        if (m_ActionRightImg != null) {
+        if (mActionRightImg != null) {
             if (toggle) {
-                m_ActionRightImg.setVisibility(View.VISIBLE);
+                mActionRightImg.setVisibility(View.VISIBLE);
             } else {
-                m_ActionRightImg.setVisibility(View.GONE);
+                mActionRightImg.setVisibility(View.GONE);
             }
         }
     }
 
 
     private void toggleActionRightImg2(boolean toggle) {
-        if (m_ActionRightImg != null) {
+        if (mActionRightImg != null) {
             if (toggle) {
-                m_ActionRightImg.setVisibility(View.VISIBLE);
-                m_numCount.setVisibility(View.VISIBLE);
+                mActionRightImg.setVisibility(View.VISIBLE);
+                mnumCount.setVisibility(View.VISIBLE);
             } else {
-                m_ActionRightImg.setVisibility(View.GONE);
-                m_numCount.setVisibility(View.GONE);
+                mActionRightImg.setVisibility(View.GONE);
+                mnumCount.setVisibility(View.GONE);
             }
         }
     }
 
     //右侧count
     private void toggleActionRightImgCount(boolean toggle) {
-        String c = m_numCount.getText().toString();
+        String c = mnumCount.getText().toString();
         if (!"0".equals(c)) {
             if (toggle) {
-                m_ActionRightImg.setVisibility(View.VISIBLE);
-                m_numCount.setVisibility(View.VISIBLE);
+                mActionRightImg.setVisibility(View.VISIBLE);
+                mnumCount.setVisibility(View.VISIBLE);
             }
         } else if ("0".equals(c)) {
-            m_ActionRightImg.setVisibility(View.VISIBLE);
-            m_numCount.setVisibility(View.GONE);
+            mActionRightImg.setVisibility(View.VISIBLE);
+            mnumCount.setVisibility(View.GONE);
         }
     }
 
 
     private void toggleActionRightText(boolean toggle) {
-        if (m_ActionRightTxt != null) {
+        if (mActionRightTxt != null) {
             if (toggle) {
-                m_ActionRightTxt.setVisibility(View.VISIBLE);
+                mActionRightTxt.setVisibility(View.VISIBLE);
             } else {
-                m_ActionRightTxt.setVisibility(View.GONE);
+                mActionRightTxt.setVisibility(View.GONE);
             }
         }
     }
 
     private void toggleActionRightTextDrawableLeft(int id) {
-        if (m_ActionRightTxt != null) {
-            m_ActionRightTxt.setCompoundDrawablesWithIntrinsicBounds(id, // left
+        if (mActionRightTxt != null) {
+            mActionRightTxt.setCompoundDrawablesWithIntrinsicBounds(id, // left
                     0, // top
                     0, // right
                     0);// bo
-            m_ActionRightTxt.setCompoundDrawablePadding(3);
+            mActionRightTxt.setCompoundDrawablePadding(3);
         }
     }
 
@@ -225,8 +224,8 @@ public abstract class BaseCompatActivity extends SupportActivity {
      * @param title
      */
     public void setActionTitle(String title) {
-        if (StringUtils.isNotEmpty(title) && m_ActionTitle != null) {
-            m_ActionTitle.setText(title);
+        if (StringUtils.isNotEmpty(title) && mActionTitle != null) {
+            mActionTitle.setText(title);
         }
     }
 
@@ -236,8 +235,8 @@ public abstract class BaseCompatActivity extends SupportActivity {
      * @param numcount
      */
     public void setActionRightCount(String numcount) {
-        if (StringUtils.isNotEmpty(numcount) && m_ActionTitle != null) {
-            m_numCount.setText(numcount);
+        if (StringUtils.isNotEmpty(numcount) && mActionTitle != null) {
+            mnumCount.setText(numcount);
         }
     }
 
@@ -247,8 +246,8 @@ public abstract class BaseCompatActivity extends SupportActivity {
      * @param id
      */
     public void setActionLeftImg(int id) {
-        if (m_ActionLeftImg != null) {
-            m_ActionLeftImg.setImageResource(id);
+        if (mActionLeftImg != null) {
+            mActionLeftImg.setImageResource(id);
         }
     }
 
@@ -259,8 +258,8 @@ public abstract class BaseCompatActivity extends SupportActivity {
      * @param id
      */
     public void setActionRightImg(int id) {
-        if (m_ActionRightImg != null) {
-            m_ActionRightImg.setImageResource(id);
+        if (mActionRightImg != null) {
+            mActionRightImg.setImageResource(id);
         }
     }
 
@@ -270,8 +269,8 @@ public abstract class BaseCompatActivity extends SupportActivity {
      * @param id
      */
     public void setActionRightTxt(int id) {
-        if (m_ActionRightTxt != null) {
-            m_ActionRightTxt.setText(getString(id));
+        if (mActionRightTxt != null) {
+            mActionRightTxt.setText(getString(id));
         }
     }
 
@@ -281,8 +280,8 @@ public abstract class BaseCompatActivity extends SupportActivity {
      * @param id
      */
     public void setActionLeftTxt(int id) {
-        if (m_ActionLeftTxt != null) {
-            m_ActionLeftTxt.setText(getString(id));
+        if (mActionLeftTxt != null) {
+            mActionLeftTxt.setText(getString(id));
         }
     }
 
@@ -373,21 +372,6 @@ public abstract class BaseCompatActivity extends SupportActivity {
     }
 
     /**
-     * 显示左边文字、中间标题、右边文字
-     *
-     * @param title
-     * @param rightTxtRes
-     */
-    public void showActionBackTitleAndRightTxt(String title, int rightTxtRes) {
-        setActionTitle(title);
-        setActionRightTxt(rightTxtRes);
-        toggleActionLeftImg(false);
-        toggleActionLeftText(true);
-        toggleActionRightImg(false);
-        toggleActionRightText(true);
-    }
-
-    /**
      * 显示标题和左侧返回按钮
      * 设置右侧自定义图标
      *
@@ -400,21 +384,6 @@ public abstract class BaseCompatActivity extends SupportActivity {
         toggleActionRightImg(true);
         toggleActionRightText(false);
         setActionRightImg(imgRightId);
-    }
-
-    /**
-     * 显示标题和左侧返回按钮
-     * 设置右侧自定义文本
-     *
-     * @param title
-     * @param txtRightId
-     */
-    public void showActionTitleBackAndRightText(String title, int txtRightId) {
-        setActionTitle(title);
-        toggleActionLeftImg(true);
-        toggleActionRightImg(false);
-        toggleActionRightText(true);
-        setActionRightTxt(txtRightId);
     }
 
     public void showActionTitleAndRightText(String title, int txtRightId) {

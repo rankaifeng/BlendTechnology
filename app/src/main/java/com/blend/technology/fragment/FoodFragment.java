@@ -57,7 +57,7 @@ public class FoodFragment extends
                 StaggeredGridLayoutManager.VERTICAL));
         foodAdapter = new FoodAdapter(getActivity(), R.layout.fragment_food_item, dataList);
         mRecyclerView.setAdapter(foodAdapter);
-        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(5);
         mRecyclerView.addItemDecoration(decoration);
         mIPresenter.getFoods(getActivity());
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {

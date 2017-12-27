@@ -82,10 +82,10 @@ public class FlashActivity extends BaseCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout
                 .LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
-        for (int i = 0; i < imgArray.length; i++) {
+        for (int anImgArray : imgArray) {
             ImageView imageView = new ImageView(this);
             imageView.setLayoutParams(params);
-            imageView.setBackgroundResource(imgArray[i]);
+            imageView.setBackgroundResource(anImgArray);
             viewList.add(imageView);
         }
         mViewPager.setAdapter(new WelcomePagerAdapter(viewList));
