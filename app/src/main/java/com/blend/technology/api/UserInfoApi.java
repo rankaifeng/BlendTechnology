@@ -7,9 +7,6 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
-/**
- * Created by rankaifeng on 2017/12/16.
- */
 
 public interface UserInfoApi {
     @POST("login")

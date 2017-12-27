@@ -2,9 +2,6 @@ package com.blend.technology.utils;
 
 import java.text.DecimalFormat;
 
-/**
- * Created by Ocean on 8/10/15.
- */
 public class StringUtils {
     /**
      * 判断给定字符串是否空白串。 空白串是指由空格、制表符、回车符、换行符组成的字符串 若输入字符串为null或空字符串，返回true

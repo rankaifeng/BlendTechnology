@@ -10,9 +10,6 @@ import com.blend.technology.utils.AnimRecyclerViewAdapter;
 
 import java.util.List;
 
-/**
- * Created by rankaifeng on 2017/9/28.
- */
 
 public abstract class PublicAdapter<T> extends AnimRecyclerViewAdapter<BaseViewHolder> {
     protected Context mContext;

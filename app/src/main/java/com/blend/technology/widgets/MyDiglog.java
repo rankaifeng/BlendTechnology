@@ -13,9 +13,6 @@ import android.widget.TextView;
 import com.blend.technology.R;
 
 
-/**
- * Created by lee on 2015/12/14.
- */
 public class MyDiglog {
 
     private static Dialog loadingDialog;

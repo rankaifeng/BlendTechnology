@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
-/**
- * Created by rankaifeng on 2017/12/15.
- */
 
 public class AppUtils {
 

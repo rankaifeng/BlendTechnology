@@ -5,9 +5,6 @@ import com.google.gson.Gson;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
-/**
- * Created by rankaifeng on 2017/11/1.
- */
 
 public class GsonUtil {
     private static GsonUtil instnse;

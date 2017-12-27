@@ -20,9 +20,6 @@ import java.util.concurrent.TimeoutException;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-/**
- * Created by rankaifeng on 2017/9/25.
- */
 
 public abstract class BaseObserver<T> implements Observer<T> {
 

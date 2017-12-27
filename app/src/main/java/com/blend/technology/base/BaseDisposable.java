@@ -18,9 +18,6 @@ import java.util.concurrent.TimeoutException;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
-/**
- * Created by rankaifeng on 2017/12/19.
- */
 
 public abstract class BaseDisposable<T> {
     BaseCompatActivity activity;

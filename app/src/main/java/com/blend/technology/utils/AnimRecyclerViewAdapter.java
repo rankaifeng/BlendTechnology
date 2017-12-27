@@ -9,9 +9,6 @@ import android.view.animation.AnimationUtils;
 
 import com.blend.technology.R;
 
-/**
- * Created by rankaifeng on 2017/12/26.
- */
 
 public class AnimRecyclerViewAdapter<T extends RecyclerView.ViewHolder>
         extends RecyclerView.Adapter<T> {

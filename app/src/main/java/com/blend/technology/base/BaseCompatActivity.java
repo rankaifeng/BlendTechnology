@@ -21,9 +21,6 @@ import com.blend.technology.widgets.MyDiglog;
 import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportActivity;
 
-/**
- * Created by rankaifeng on 2017/12/15.
- */
 
 public abstract class BaseCompatActivity extends SupportActivity {
     private static final String CLASS_NAME = "FlashActivity";

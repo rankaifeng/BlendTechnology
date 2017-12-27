@@ -2,9 +2,6 @@ package com.blend.technology.base;
 
 import com.blend.technology.model.IBaseModel;
 
-/**
- * Created by rankaifeng on 2017/12/16.
- */
 
 public abstract class BaseMVPCompatFragment<P extends BasePresenter, M extends IBaseModel>
         extends BaseCompatFragment implements IBaseFragment {
@@ -17,9 +14,7 @@ public abstract class BaseMVPCompatFragment<P extends BasePresenter, M extends I
         mIPresenter = (P) initPresenter();
         if (mIPresenter != null) {
             mIModel = (M) mIPresenter.getModel();
-            if (mIModel != null) {
-                mIPresenter.attchView(mIModel, this);
-            }
+            if (mIModel != null) mIPresenter.attchView(mIModel, this);
         }
     }
 

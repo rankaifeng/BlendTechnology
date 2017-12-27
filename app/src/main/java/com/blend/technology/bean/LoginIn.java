@@ -1,8 +1,5 @@
 package com.blend.technology.bean;
 
-/**
- * Created by rankaifeng on 2017/12/14.
- */
 
 public class LoginIn {
     private String userCode;

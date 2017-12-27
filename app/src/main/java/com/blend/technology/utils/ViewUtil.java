@@ -15,9 +15,6 @@ import android.widget.NumberPicker;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by baidu on 16/7/21.
- */
 public class ViewUtil {
 
 

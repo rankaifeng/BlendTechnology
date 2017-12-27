@@ -2,9 +2,6 @@ package com.blend.technology.bean;
 
 import java.io.Serializable;
 
-/**
- * Created by rankaifeng on 2017/12/23.
- */
 
 public class Foods implements Serializable {
     private Data data;

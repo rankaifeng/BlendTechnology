@@ -1,8 +1,5 @@
 package com.blend.technology.bean;
 
-/**
- * Created by rankaifeng on 2017/10/19.
- */
 
 public class LoginOut {
     private String msg;

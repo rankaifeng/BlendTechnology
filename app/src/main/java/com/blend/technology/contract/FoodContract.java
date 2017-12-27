@@ -20,6 +20,6 @@ public interface FoodContract {
     }
 
     interface FoodView extends IBaseActivity {
-        void requestSuesses(FoodOut foodOut);
+        void requestsuesses(FoodOut foodOut);
     }
 }

@@ -27,9 +27,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * Created by rankaifeng on 2017/12/23.
- */
 
 public class FoodFragment extends
         BaseMVPCompatFragment<FoodContract.FoodPresenter, FoodContract.FoodModel>
@@ -39,10 +36,8 @@ public class FoodFragment extends
     private FoodAdapter foodAdapter;
     private List<FoodOut.Data> dataList = new ArrayList<>();
     private List<FoodOut.Data> headDataList = new ArrayList<>();
-    private Banner mBanner;
     private List<String> imageViews = new ArrayList<>();
-    private List<String> titileList = new ArrayList<>();
-    private RecyclerView fraHeadRecy;
+    private List<String> titleList = new ArrayList<>();
 
     public static FoodFragment newInstance() {
         Bundle args = new Bundle();
@@ -88,12 +83,12 @@ public class FoodFragment extends
     }
 
     @Override
-    public void requestSuesses(FoodOut foodOut) {
+    public void requestsuesses(FoodOut foodOut) {
         mRecyclerView.loadMoreComplete();
-        if (imageViews.size() == 0 && titileList.size() == 0 && headDataList.size() == 0) {
+        if (imageViews.size() == 0 && titleList.size() == 0 && headDataList.size() == 0) {
             for (int i = 0; i < 3; i++) {
                 imageViews.add(foodOut.getArrayList().get(i).getImgUrl());
-                titileList.add(foodOut.getArrayList().get(i).getTitle());
+                titleList.add(foodOut.getArrayList().get(i).getTitle());
                 headDataList.add(foodOut.getArrayList().get(i));
             }
             showHeadView();
@@ -106,13 +101,13 @@ public class FoodFragment extends
         // TODO: 2017/12/26 添加头部布局
         View headView = LayoutInflater.from(getActivity())
                 .inflate(R.layout.fragment_banner, null);
-        mBanner = (Banner) headView.findViewById(R.id.banner);
-        fraHeadRecy = (RecyclerView) headView.findViewById(R.id.fra_head_recy);
+        Banner mBanner = (Banner) headView.findViewById(R.id.banner);
+        RecyclerView fraHeadRecy = (RecyclerView) headView.findViewById(R.id.fra_head_recy);
         fraHeadRecy.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         foodAdapter = new FoodAdapter(getActivity(), R.layout.fragment_food_item, headDataList);
         fraHeadRecy.setAdapter(foodAdapter);
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
-        mBanner.setBannerTitles(titileList);
+        mBanner.setBannerTitles(titleList);
         mBanner.setImageLoader(new GlideImageLoader());
         mBanner.setImages(imageViews);
         mBanner.start();

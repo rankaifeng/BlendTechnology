@@ -11,9 +11,6 @@ import com.blend.technology.contract.FoodContract;
 
 import io.reactivex.Observable;
 
-/**
- * Created by rankaifeng on 2017/12/24.
- */
 
 public class FoodImp extends BaseModel implements FoodContract.FoodModel {
 

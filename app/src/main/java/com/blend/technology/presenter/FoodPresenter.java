@@ -11,9 +11,6 @@ import com.blend.technology.model.imp.FoodImp;
 
 import io.reactivex.Observable;
 
-/**
- * Created by rankaifeng on 2017/12/16.
- */
 
 public class FoodPresenter extends FoodContract.FoodPresenter {
 
@@ -35,7 +32,7 @@ public class FoodPresenter extends FoodContract.FoodPresenter {
             @Override
             protected void requestSuccess(FoodOut foodOut) {
                 if (foodOut.getMsg().equals("OK")) {
-                    mView.requestSuesses(foodOut);
+                    mView.requestsuesses(foodOut);
                 } else {
                     ((BaseCompatActivity) activity).showToast(foodOut.getMsg());
                     ((BaseCompatActivity) activity).hideProgress();

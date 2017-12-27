@@ -7,11 +7,6 @@ import android.util.Log;
 
 import java.lang.reflect.Field;
 
-/**
- * Created by Horrarndoo on 2017/9/22.
- * <p>
- * BottomNavigationView禁止3个item以上动画切换效果
- */
 public class BottomNavigationViewHelper {
     public static void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);

@@ -10,9 +10,6 @@ import com.blend.technology.R;
 
 import me.yokeyword.fragmentation.SupportFragment;
 
-/**
- * Created by rankaifeng on 2017/12/23.
- */
 
 public class OneFragment extends SupportFragment {
 

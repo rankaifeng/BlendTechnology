@@ -4,9 +4,6 @@ import android.support.annotation.NonNull;
 
 import com.blend.technology.widgets.RxManager;
 
-/**
- * Created by rankaifeng on 2017/12/16.
- */
 
 public abstract class BasePresenter<M, V> {
     public V mView;
@@ -26,7 +23,7 @@ public abstract class BasePresenter<M, V> {
      * @param v
      * @param m
      */
-    public void attchView(@NonNull M m, @NonNull V v) {
+    void attchView(@NonNull M m, @NonNull V v) {
         this.mView = v;
         this.mModel = m;
     }
@@ -34,7 +31,7 @@ public abstract class BasePresenter<M, V> {
     /**
      * 解除view跟model的绑定关系
      */
-    public void detchView() {
+    void detchView() {
         mRxManager.unSubscribe();
         this.mModel = null;
         this.mView = null;

@@ -15,9 +15,6 @@ import com.blend.technology.R;
 import com.blend.technology.utils.BitmapUtil;
 import com.blend.technology.utils.BlurBitmapUtil;
 
-/**
- * Created by rankaifeng on 2017/12/22.
- */
 
 public class BlurredView extends RelativeLayout {
     	/* ========== 全局相关 ========== */

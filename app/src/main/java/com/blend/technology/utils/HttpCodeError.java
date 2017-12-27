@@ -14,9 +14,6 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeoutException;
 
-/**
- * Created by rankaifeng on 2017/12/18.
- */
 
 public class HttpCodeError {
     public static String returnErrorMsg(Throwable throwable) {

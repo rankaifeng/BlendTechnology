@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by rankaifeng on 2017/12/26.
- */
 
 public class WrapAdapter<T extends RecyclerView.Adapter> extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final T mRealAdapter;

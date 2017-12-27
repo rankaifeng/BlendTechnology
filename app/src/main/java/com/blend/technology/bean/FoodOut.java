@@ -2,9 +2,6 @@ package com.blend.technology.bean;
 
 import java.util.List;
 
-/**
- * Created by rankaifeng on 2017/12/24.
- */
 
 public class FoodOut {
     private String msg;

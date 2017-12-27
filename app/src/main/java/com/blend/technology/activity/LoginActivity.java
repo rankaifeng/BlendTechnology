@@ -16,9 +16,6 @@ import com.blend.technology.widgets.BlurredView;
 
 import butterknife.BindView;
 
-/**
- * Created by rankaifeng on 2017/12/15.
- */
 
 public class LoginActivity extends BaseMVPCompatActivity<LoginContract.LoginPresenter,
         LoginContract.LoginModel>

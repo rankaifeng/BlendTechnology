@@ -12,9 +12,6 @@ import com.blend.technology.contract.LoginContract;
 
 import io.reactivex.Observable;
 
-/**
- * Created by rankaifeng on 2017/12/18.
- */
 
 public class LoginModelImp extends BaseModel implements LoginContract.LoginModel {
 

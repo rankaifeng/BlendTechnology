@@ -19,9 +19,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * Created by rankaifeng on 2017/12/15.
- */
 
 public class FlashActivity extends BaseCompatActivity {
     @BindView(R.id.tv_version_name)

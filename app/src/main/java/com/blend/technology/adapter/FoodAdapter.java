@@ -11,9 +11,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by rankaifeng on 2017/12/25.
- */
 
 public class FoodAdapter extends PublicAdapter<FoodOut.Data> {
     Context mContext;

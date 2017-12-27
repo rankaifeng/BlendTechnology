@@ -6,9 +6,6 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * Created by rankaifeng on 2017/12/14.
- */
 
 public class RxHelper {
     /**
