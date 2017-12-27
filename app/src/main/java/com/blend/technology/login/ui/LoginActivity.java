@@ -1,15 +1,16 @@
-package com.blend.technology.activity;
+package com.blend.technology.login.ui;
 
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.blend.technology.R;
+import com.blend.technology.activity.MainActivity;
 import com.blend.technology.base.BaseMVPCompatActivity;
 import com.blend.technology.base.BasePresenter;
 import com.blend.technology.bean.LoginIn;
 import com.blend.technology.bean.LoginOut;
-import com.blend.technology.contract.LoginContract;
-import com.blend.technology.presenter.LoginPresenter;
+import com.blend.technology.login.contract.LoginContract;
+import com.blend.technology.login.presenter.LoginPresenter;
 import com.blend.technology.utils.Config;
 import com.blend.technology.utils.StringUtils;
 import com.blend.technology.widgets.BlurredView;

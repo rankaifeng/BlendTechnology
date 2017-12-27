@@ -23,7 +23,7 @@
 
         <activity android:name="com.blend.technology.activity.MainActivity" />
         <activity
-            android:name="com.blend.technology.activity.LoginActivity"
+            android:name="com.blend.technology.login.ui.LoginActivity"
             android:theme="@style/SplashTheme" />
     </application>
 

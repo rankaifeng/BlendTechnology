@@ -1,4 +1,4 @@
-package com.blend.technology.model.imp;
+package com.blend.technology.login.model;
 
 import android.support.annotation.NonNull;
 
@@ -8,7 +8,7 @@ import com.blend.technology.bean.LoginIn;
 import com.blend.technology.bean.LoginOut;
 import com.blend.technology.helper.RetrofitCreateHelper;
 import com.blend.technology.helper.RxHelper;
-import com.blend.technology.contract.LoginContract;
+import com.blend.technology.login.contract.LoginContract;
 
 import io.reactivex.Observable;
 

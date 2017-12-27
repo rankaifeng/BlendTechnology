@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.blend.technology.R;
 import com.blend.technology.adapter.WelcomePagerAdapter;
 import com.blend.technology.base.BaseCompatActivity;
+import com.blend.technology.login.ui.LoginActivity;
 import com.blend.technology.utils.AppUtils;
 import com.blend.technology.utils.ViewPagerListener;
 
@@ -98,7 +99,7 @@ public class FlashActivity extends BaseCompatActivity {
         ivPointArray = new ImageView[viewList.size()];
         for (int i = 0; i < viewList.size(); i++) {
             ivPoint = new ImageView(this);
-            ivPoint.setLayoutParams(new ViewGroup.LayoutParams(60, 60));
+            ivPoint.setLayoutParams(new ViewGroup.LayoutParams(35, 35));
             ivPoint.setPadding(35, 0, 35, 0);
             ivPointArray[i] = ivPoint;
             if (i == 0) {

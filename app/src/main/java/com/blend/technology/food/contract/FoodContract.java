@@ -1,4 +1,4 @@
-package com.blend.technology.contract;
+package com.blend.technology.food.contract;
 
 import android.app.Activity;
 

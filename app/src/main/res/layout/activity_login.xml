@@ -20,24 +20,24 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:padding="15dp">
+            android:layout_marginRight="20dp">
 
             <ImageView
                 android:id="@+id/img_login_name"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/todo"
                 android:src="@mipmap/user_name" />
 
             <EditText
                 android:id="@+id/edit_login_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/img_login_name"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/img_login_name"
                 android:background="@null"
                 android:hint="@string/login_userName"
                 android:textColor="@color/color_white"
@@ -54,28 +54,29 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:padding="15dp">
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/img_login_pwd"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/todo"
                 android:src="@mipmap/pwd" />
 
             <EditText
                 android:id="@+id/edit_login_pwd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/img_login_pwd"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/img_login_pwd"
                 android:background="@null"
                 android:hint="@string/login_user_pwd"
-                android:textColor="@color/white_color"
                 android:password="true"
+                android:textColor="@color/white_color"
                 android:textColorHint="@color/color_white"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -90,10 +91,10 @@
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/shape_blue_entable"
             android:text="@string/login_text"
             android:textColor="@color/white_color"

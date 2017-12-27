@@ -1,4 +1,4 @@
-package com.blend.technology.presenter;
+package com.blend.technology.food.presenter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -6,8 +6,8 @@ import android.support.annotation.NonNull;
 import com.blend.technology.base.BaseCompatActivity;
 import com.blend.technology.base.BaseDisposable;
 import com.blend.technology.bean.FoodOut;
-import com.blend.technology.contract.FoodContract;
-import com.blend.technology.model.imp.FoodImp;
+import com.blend.technology.food.contract.FoodContract;
+import com.blend.technology.food.model.FoodImp;
 
 import io.reactivex.Observable;
 

@@ -1,4 +1,4 @@
-package com.blend.technology.contract;
+package com.blend.technology.login.contract;
 
 import android.app.Activity;
 

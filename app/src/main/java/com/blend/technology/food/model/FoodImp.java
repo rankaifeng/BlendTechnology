@@ -1,4 +1,4 @@
-package com.blend.technology.model.imp;
+package com.blend.technology.food.model;
 
 import android.support.annotation.NonNull;
 
@@ -7,7 +7,7 @@ import com.blend.technology.base.BaseModel;
 import com.blend.technology.bean.FoodOut;
 import com.blend.technology.helper.RetrofitCreateHelper;
 import com.blend.technology.helper.RxHelper;
-import com.blend.technology.contract.FoodContract;
+import com.blend.technology.food.contract.FoodContract;
 
 import io.reactivex.Observable;
 

@@ -5,7 +5,7 @@ import android.view.KeyEvent;
 
 import com.blend.technology.R;
 import com.blend.technology.base.BaseCompatActivity;
-import com.blend.technology.fragment.FoodFragment;
+import com.blend.technology.food.ui.FoodFragment;
 import com.blend.technology.fragment.OneFragment;
 import com.blend.technology.fragment.ThreeFragment;
 import com.blend.technology.fragment.TwoFragment;

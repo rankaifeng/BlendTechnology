@@ -1,4 +1,4 @@
-package com.blend.technology.fragment;
+package com.blend.technology.food.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,8 +14,8 @@ import com.blend.technology.adapter.FoodAdapter;
 import com.blend.technology.base.BaseMVPCompatFragment;
 import com.blend.technology.base.BasePresenter;
 import com.blend.technology.bean.FoodOut;
-import com.blend.technology.contract.FoodContract;
-import com.blend.technology.presenter.FoodPresenter;
+import com.blend.technology.food.contract.FoodContract;
+import com.blend.technology.food.presenter.FoodPresenter;
 import com.blend.technology.utils.GlideImageLoader;
 import com.blend.technology.utils.SpacesItemDecoration;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;

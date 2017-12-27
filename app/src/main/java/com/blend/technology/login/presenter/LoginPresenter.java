@@ -1,4 +1,4 @@
-package com.blend.technology.presenter;
+package com.blend.technology.login.presenter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -7,8 +7,8 @@ import com.blend.technology.base.BaseCompatActivity;
 import com.blend.technology.base.BaseDisposable;
 import com.blend.technology.bean.LoginIn;
 import com.blend.technology.bean.LoginOut;
-import com.blend.technology.model.imp.LoginModelImp;
-import com.blend.technology.contract.LoginContract;
+import com.blend.technology.login.model.LoginModelImp;
+import com.blend.technology.login.contract.LoginContract;
 
 import io.reactivex.Observable;
 
