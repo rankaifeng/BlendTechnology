@@ -1,10 +1,7 @@
 package com.jcodecraeer.xrecyclerview;
 
-import android.support.design.widget.AppBarLayout;
 
-/**
- * Created by jianghejie on 16/6/19.
- */
+import android.support.design.widget.AppBarLayout;
 
 public abstract class AppBarStateChangeListener implements AppBarLayout.OnOffsetChangedListener {
 
