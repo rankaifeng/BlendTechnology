@@ -38,6 +38,10 @@ public class FoodFragment extends
     private List<FoodOut.Data> headDataList = new ArrayList<>();
     private List<String> imageViews = new ArrayList<>();
     private List<String> titleList = new ArrayList<>();
+    private boolean isHead = false;
+    private static String RECY_TYPE = "";
+    private List<View> viewList = new ArrayList<>();
+    View headView;
 
     public static FoodFragment newInstance() {
         Bundle args = new Bundle();
@@ -59,12 +63,19 @@ public class FoodFragment extends
         mRecyclerView.setAdapter(foodAdapter);
         SpacesItemDecoration decoration = new SpacesItemDecoration(5);
         mRecyclerView.addItemDecoration(decoration);
-        mIPresenter.getFoods(getActivity());
+
+        headView = LayoutInflater.from(getActivity())
+                .inflate(R.layout.fragment_banner, null);
+        mBanner = (Banner) headView.findViewById(R.id.banner);
+        mRecyclerView.addHeaderView(headView);
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                getActivity().getWindow().getDecorView().postDelayed(() ->
-                        mRecyclerView.refreshComplete(), 2000);
+                getActivity().getWindow().getDecorView().postDelayed(() -> {
+                    mIPresenter.getFoods(getActivity());
+                    RECY_TYPE = "refresh";
+                    mRecyclerView.refreshComplete();
+                }, 2000);
             }
 
             @Override
@@ -73,6 +84,8 @@ public class FoodFragment extends
                         mIPresenter.getFoods(getActivity()), 3000);
             }
         });
+
+        mIPresenter.getFoods(getActivity());
     }
 
 
@@ -82,26 +95,30 @@ public class FoodFragment extends
         return FoodPresenter.newInstance();
     }
 
+
     @Override
     public void requestsuesses(FoodOut foodOut) {
         mRecyclerView.loadMoreComplete();
-        if (imageViews.size() == 0 && titleList.size() == 0 && headDataList.size() == 0) {
-            for (int i = 0; i < 3; i++) {
-                imageViews.add(foodOut.getArrayList().get(i).getImgUrl());
-                titleList.add(foodOut.getArrayList().get(i).getTitle());
-                headDataList.add(foodOut.getArrayList().get(i));
-            }
-            showHeadView();
+        if (RECY_TYPE.equals("refresh")) {
+            dataList.clear();
+            imageViews.clear();
+            headDataList.clear();
+            titleList.clear();
         }
-        dataList.addAll(foodOut.getArrayList());
-        mRecyclerView.notifyItemInserted(dataList.size());
+        List<FoodOut.Data> arrayList = foodOut.getArrayList();
+        dataList.addAll(arrayList);
+        for (int i = 0; i < 3; i++) {
+            imageViews.add(arrayList.get(i).getImgUrl());
+            titleList.add(arrayList.get(i).getTitle());
+            headDataList.add(arrayList.get(i));
+        }
+        showHeadView();
     }
+
+    Banner mBanner;
 
     private void showHeadView() {
         // TODO: 2017/12/26 添加头部布局
-        View headView = LayoutInflater.from(getActivity())
-                .inflate(R.layout.fragment_banner, null);
-        Banner mBanner = (Banner) headView.findViewById(R.id.banner);
         RecyclerView fraHeadRecy = (RecyclerView) headView.findViewById(R.id.fra_head_recy);
         fraHeadRecy.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         foodAdapter = new FoodAdapter(getActivity(), R.layout.fragment_food_item, headDataList);
@@ -111,6 +128,6 @@ public class FoodFragment extends
         mBanner.setImageLoader(new GlideImageLoader());
         mBanner.setImages(imageViews);
         mBanner.start();
-        mRecyclerView.addHeaderView(headView);
+        foodAdapter.notifyDataSetChanged();
     }
 }
