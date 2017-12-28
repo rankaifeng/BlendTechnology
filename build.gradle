@@ -26,9 +26,9 @@ task clean(type: Delete) {
 }
 ext {
     android = [
-            compileSdkVersion: 25,
+            compileSdkVersion: 26,
             minSdkVersion    : 17,
-            targetSdkVersion : 25,
+            targetSdkVersion : 26,
             versionName      : '1.0.0',
             versionCode      : 1
     ]

@@ -35,6 +35,7 @@ public class FlashActivity extends BaseCompatActivity {
     @BindView(R.id.btn_go)
     Button btnGo;
 
+
     private List<View> viewList = new ArrayList<>();//存放图片资源的集合
     private int imgArray[];//存放图片资源的数组
 
