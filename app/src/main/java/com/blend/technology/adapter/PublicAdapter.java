@@ -12,13 +12,13 @@ import java.util.List;
 
 
 public abstract class PublicAdapter<T> extends AnimRecyclerViewAdapter<BaseViewHolder> {
-    protected Context mContext;
-    protected int mLayoutId;
-    protected List<T> mDatas;
-    protected OnItemClickListener mOnItemClickListener;
-    protected OnItemLongClickListener mOnItemLongClickListener;
+    private Context mContext;
+    private int mLayoutId;
+    private List<T> mDatas;
+    private OnItemClickListener mOnItemClickListener;
+    private OnItemLongClickListener mOnItemLongClickListener;
 
-    public PublicAdapter(Context context, int layoutId, List<T> datas) {
+    PublicAdapter(Context context, int layoutId, List<T> datas) {
         mContext = context;
         mLayoutId = layoutId;
         mDatas = datas;
@@ -43,7 +43,6 @@ public abstract class PublicAdapter<T> extends AnimRecyclerViewAdapter<BaseViewH
         if (mDatas != null && data != null && !data.isEmpty()) {
             mDatas.addAll(data);
         }
-        notifyDataSetChanged();
     }
 
     public void clearAndAddData(List<T> data) {
@@ -51,7 +50,6 @@ public abstract class PublicAdapter<T> extends AnimRecyclerViewAdapter<BaseViewH
             mDatas.clear();
         }
         mDatas.addAll(data);
-        notifyDataSetChanged();
     }
 
     public void clearData() {

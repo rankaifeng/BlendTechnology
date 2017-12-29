@@ -12,14 +12,14 @@ import io.reactivex.Observable;
 
 public interface FoodContract {
     abstract class FoodPresenter extends BasePresenter<FoodModel, FoodView> {
-        public abstract void getFoods(Activity activity);
+        public abstract void getFoods(Activity activity,int page, int record);
     }
 
     interface FoodModel extends IBaseModel {
-        Observable<FoodOut> getFoods();
+        Observable<FoodOut> getFoods(int page, int record);
     }
 
     interface FoodView extends IBaseActivity {
-        void requestsuesses(FoodOut foodOut);
+        void requestSuccess(FoodOut foodOut);
     }
 }

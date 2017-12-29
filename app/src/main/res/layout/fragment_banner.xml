@@ -13,11 +13,11 @@
         app:indicator_height="6dp"
         app:indicator_width="6dp" />
 
-    <include layout="@layout/fragment_banner_head" />
+    <!--<include layout="@layout/fragment_banner_head" />-->
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fra_head_recy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/fra_head_recy"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
     <include layout="@layout/fragment_banner_tag" />
 </LinearLayout>

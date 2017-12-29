@@ -7,4 +7,6 @@
     <string name="refresh_done">refresh done</string>
     <string name="loading_done">loading done</string>
     <string name="listview_header_last_time">last update：</string>
+    <string name="foot_more">加载中...</string>
+    <string name="no_data">暂无更多数据</string>
 </resources>

@@ -26,13 +26,13 @@ public class FoodPresenter extends FoodContract.FoodPresenter {
     }
 
     @Override
-    public void getFoods(Activity activity) {
-        Observable<FoodOut> foods = mModel.getFoods();
+    public void getFoods(Activity activity,int page, int record) {
+        Observable<FoodOut> foods = mModel.getFoods(page, record);
         mRxManager.register(new BaseDisposable<FoodOut>(activity) {
             @Override
             protected void requestSuccess(FoodOut foodOut) {
                 if (foodOut.getMsg().equals("OK")) {
-                    mView.requestsuesses(foodOut);
+                    mView.requestSuccess(foodOut);
                 } else {
                     ((BaseCompatActivity) activity).showToast(foodOut.getMsg());
                     ((BaseCompatActivity) activity).hideProgress();

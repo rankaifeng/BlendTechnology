@@ -20,8 +20,8 @@ public class FoodImp extends BaseModel implements FoodContract.FoodModel {
     }
 
     @Override
-    public Observable<FoodOut> getFoods() {
-        return RetrofitCreateHelper.createApi(FoodApi.class).getFood()
+    public Observable<FoodOut> getFoods(int page, int record) {
+        return RetrofitCreateHelper.createApi(FoodApi.class).getFood(page, record)
                 .compose(RxHelper.rxSchedulerHelper());
     }
 }

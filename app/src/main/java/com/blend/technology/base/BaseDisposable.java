@@ -60,7 +60,7 @@ public abstract class BaseDisposable<T> {
                 || t instanceof ParseException) {   //  解析错误
             sb.append("解析错误");
         } else {
-            return "";
+            return "连接服务器失败";
         }
         return sb.toString();
     }
