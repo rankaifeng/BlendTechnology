@@ -1,21 +1,29 @@
 package com.blend.technology.base;
 
+import android.accounts.NetworkErrorException;
+import android.net.ParseException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.blend.technology.R;
 import com.blend.technology.adapter.PublicAdapter;
 import com.blend.technology.model.IBaseModel;
-import com.blend.technology.utils.FooterViewError;
 import com.blend.technology.utils.SpacesItemDecoration;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import org.json.JSONException;
+
+import java.io.InterruptedIOException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import butterknife.BindView;
 
@@ -32,9 +40,6 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
     @BindView(R.id.fra_recycler)
     public XRecyclerView mXRecyclerView;
     public PublicAdapter<T> mAdapter;
-    View inflate;
-    ProgressBar footerProgress;
-    TextView footerTvMore, footerTvNomore;
     boolean isShow = false;
 
     @Override
@@ -46,12 +51,17 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        showLoading();
         mAdapter = getAdapter();
         mXRecyclerView.setAdapter(mAdapter);
         SpacesItemDecoration decoration = new SpacesItemDecoration(5);
         mXRecyclerView.addItemDecoration(decoration);
         recyFlag = REFRESH_FLAG;
         requestServiceData(PAGE, PAGE_NUMBER);
+//        ArrowRefreshHeader header = new ArrowRefreshHeader(getActivity());
+//        header.setProgressStyle(ProgressStyle.BallGridBeat);
+//        header.setArrowImageView(R.drawable.point_s);
+//        mXRecyclerView.setRefreshHeader(header);
         mXRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
@@ -65,22 +75,7 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
                 recyFlag = LOADMORE_FLAG;
                 if (!isShow)
                     PAGE++;
-                showAndHide(false);
                 requestServiceData(PAGE, PAGE_NUMBER);
-            }
-        });
-        inflate = LayoutInflater.from(getActivity()).inflate(R.layout.listview_footer, null);
-        mXRecyclerView.setFootView(inflate, new FooterViewError() {
-            @Override
-            protected void loadingMore(View footerView) {
-                footerProgress = footerView.findViewById(R.id.footer_progress);
-                footerTvMore = footerView.findViewById(R.id.footer_tv_more);
-                footerTvNomore = footerView.findViewById(R.id.footer_tv_nomore);
-            }
-
-            @Override
-            protected void loadMoreComplete(View footerView) {
-                showAndHide(isShow);
             }
         });
     }
@@ -91,19 +86,52 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
      * @param dataList
      */
     public void requestSuccess(List<T> dataList) {
+        hideProgress();
         isShow = dataList.size() == 0;
-        if (recyFlag.equals(LOADMORE_FLAG)) {
-            mXRecyclerView.loadMoreComplete();
-            // TODO: 2017/12/29 上拉加载
-            mAdapter.addData(dataList);
+        if (dataList.size() > 0) {
+            if (isLoadOrRefresh()) {
+                mXRecyclerView.loadMoreComplete();
+                // TODO: 2017/12/29 上拉加载
+                mAdapter.addData(dataList);
+            } else {
+                // TODO: 2017/12/29 下拉刷新
+                mXRecyclerView.setLoadingMoreEnabled(true);
+                mXRecyclerView.refreshComplete();
+                mAdapter.clearAndAddData(dataList);
+            }
+            mXRecyclerView.notifyItemChanged(dataList.size());
         } else {
-            // TODO: 2017/12/29 下拉刷新
-            mXRecyclerView.refreshComplete();
-            mAdapter.clearAndAddData(dataList);
+            mXRecyclerView.setLoadingMoreEnabled(false);
+            mXRecyclerView.loadMoreComplete();
         }
-        mXRecyclerView.notifyItemChanged(dataList.size());
     }
 
+    public void requestFail(Throwable t) {
+        hideProgress();
+        if (t instanceof NetworkErrorException ||
+                t instanceof UnknownHostException
+                || t instanceof ConnectException) {
+            showToast("网络异常");
+        } else if (t instanceof SocketTimeoutException
+                || t instanceof InterruptedIOException
+                || t instanceof TimeoutException) {
+            showToast("请求超时");
+        } else if (t instanceof JsonSyntaxException) {
+            showToast("请求不合法");
+        } else if (t instanceof JsonParseException
+                || t instanceof JSONException
+                || t instanceof ParseException) {   //  解析错误
+            showToast("解析错误");
+        } else {
+            showToast("连接服务器失败");
+        }
+        if (isLoadOrRefresh()) {
+            mXRecyclerView.loadMoreComplete();
+        } else {
+            mXRecyclerView.refreshComplete();
+        }
+        isShow = true;
+    }
 
     @Override
     public int getLayoutId() {
@@ -117,20 +145,9 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
 
     protected abstract void requestServiceData(int page, int record);
 
-    /**
-     * 根据数据源来判断底部的暂无数据是否显示
-     *
-     * @param isShow
-     */
-    private void showAndHide(boolean isShow) {
-        if (isShow) {
-            footerProgress.setVisibility(View.GONE);
-            footerTvMore.setVisibility(View.GONE);
-            footerTvNomore.setVisibility(View.VISIBLE);
-            return;
-        }
-        footerProgress.setVisibility(View.VISIBLE);
-        footerTvMore.setVisibility(View.VISIBLE);
-        footerTvNomore.setVisibility(View.GONE);
+    protected abstract void showLoading();
+
+    private boolean isLoadOrRefresh() {
+        return recyFlag.equals(LOADMORE_FLAG);
     }
 }

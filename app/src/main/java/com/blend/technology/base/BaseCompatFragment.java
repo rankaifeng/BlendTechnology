@@ -1,14 +1,19 @@
 package com.blend.technology.base;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.blend.technology.widgets.MyDiglog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,6 +26,8 @@ public abstract class BaseCompatFragment extends SupportFragment {
     protected Context mContext;
     protected Activity mActivity;
     private Unbinder binder;
+    private Toast toast = null;
+    Dialog progressDlg;
 
     @Override
     public void onAttach(Context context) {
@@ -87,7 +94,6 @@ public abstract class BaseCompatFragment extends SupportFragment {
     public abstract void initUI(View view, @Nullable Bundle savedInstanceState);
 
     /**
-
      * 处理回退事件
      *
      * @return true 事件已消费
@@ -108,4 +114,36 @@ public abstract class BaseCompatFragment extends SupportFragment {
 
     abstract void initView();
 
+    public void showToast(String msg) {
+        showToast(msg, true);
+    }
+
+    public void showToast(String msg, boolean status) {
+        if (status) {
+            toast = Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
+        if (!status) {
+            toast.cancel();
+        }
+    }
+
+    /**
+     * 显示loading
+     *
+     * @param msg 自定义消息
+     */
+    public void showProgress(String msg) {
+        progressDlg = MyDiglog.createLoadingDialog(getActivity(), msg, false);
+    }
+
+    /**
+     * 隐藏loading
+     */
+    public void hideProgress() {
+        if (progressDlg != null && progressDlg.isShowing()) {
+            progressDlg.dismiss();
+        }
+    }
 }

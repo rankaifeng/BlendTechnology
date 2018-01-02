@@ -1,5 +1,6 @@
 package com.blend.technology.food.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -39,17 +40,16 @@ public class FoodFragment extends
         return fragment;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
         mXRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL));
         headView = LayoutInflater.from(getActivity())
                 .inflate(R.layout.fragment_banner, null);
-
         mBanner = headView.findViewById(R.id.banner);
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         mXRecyclerView.addHeaderView(headView);
-
     }
 
 
@@ -84,6 +84,11 @@ public class FoodFragment extends
 
     @Override
     protected void requestServiceData(int page, int record) {
-        mIPresenter.getFoods(getActivity(), page, record);
+        mIPresenter.getFoods(this, page, record);
+    }
+
+    @Override
+    protected void showLoading() {
+        showProgress("请求数据中......");
     }
 }

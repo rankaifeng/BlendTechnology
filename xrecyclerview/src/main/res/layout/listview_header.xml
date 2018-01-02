@@ -28,8 +28,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:visibility="gone">
+                android:layout_marginTop="3dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -64,6 +63,9 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/listview_header_text"
             android:visibility="invisible" />
+
+
+
     </RelativeLayout>
 
 </LinearLayout>
