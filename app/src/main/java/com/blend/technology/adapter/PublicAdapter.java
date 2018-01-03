@@ -6,15 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blend.technology.base.BaseViewHolder;
-import com.blend.technology.utils.AnimRecyclerViewAdapter;
 
 import java.util.List;
 
 
-public abstract class PublicAdapter<T> extends AnimRecyclerViewAdapter<BaseViewHolder> {
+public abstract class PublicAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
     private Context mContext;
     private int mLayoutId;
-    private List<T> mDatas;
+    public List<T> mDatas;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
 

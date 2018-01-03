@@ -2,12 +2,13 @@ package com.blend.technology.base;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseCompatActivity extends SupportActivity {
     private static final String CLASS_NAME = "FlashActivity";
+    private static final String CLASS_NAME_LOGIN = "LoginActivity";
+    private static final String CLASS_NAME_FOOD = "FoodDetailActivity";
     private TextView mActionTitle;
     private ImageView mActionLeftImg;
     private TextView mActionLeftTxt;
@@ -59,6 +62,19 @@ public abstract class BaseCompatActivity extends SupportActivity {
         }
     }
 
+    protected void initTitleBar(Toolbar toolbar, String title) {
+        toolbar.setTitle(title);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressedSupport();
+            }
+        });
+    }
+
     public void showToast(String msg) {
         showToast(msg, true);
     }
@@ -85,25 +101,34 @@ public abstract class BaseCompatActivity extends SupportActivity {
 
     protected void changTitleBar() {
         String childClassName = getChildClassName();
-        if (childClassName.equals(CLASS_NAME) || childClassName.equals("LoginActivity")) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        } else {
-            isShow = true;
-            ViewUtil.initSystemBar(this, R.color.colorPrimary);
+        switch (childClassName) {
+            case CLASS_NAME:
+            case CLASS_NAME_LOGIN:
+//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                ViewUtil.initSystemBar(this, Color.TRANSPARENT);
+                break;
+            case CLASS_NAME_FOOD:
+                ViewUtil.setBarColor(this, Color.TRANSPARENT);
+                break;
+            default:
+                isShow = true;
+                ViewUtil.initSystemBar(this, R.color.colorPrimary);
+                break;
         }
     }
 
+
     public void defaultActionBar() {
         View customerActionBar = getLayoutInflater().inflate(R.layout.baseactivity_bar_layout, null);
-        mActionTitle = (TextView) customerActionBar.findViewById(R.id.txt_title);
-        RelativeLayout mActionLeft = (RelativeLayout) customerActionBar.findViewById(R.id.relative_left);
-        mActionLeftTxt = (TextView) customerActionBar.findViewById(R.id.txt_left);
-        mActionLeftImg = (ImageView) customerActionBar.findViewById(R.id.img_back);
-        RelativeLayout mActionRight = (RelativeLayout) customerActionBar.findViewById(R.id.relative_right);
-        mActionRightImg = (ImageView) customerActionBar.findViewById(R.id.img_right);
-        mActionRightTxt = (TextView) customerActionBar.findViewById(R.id.txt_right);
-        mnumCount = (TextView) customerActionBar.findViewById(R.id.tv_numcount);
+        mActionTitle = customerActionBar.findViewById(R.id.txt_title);
+        RelativeLayout mActionLeft = customerActionBar.findViewById(R.id.relative_left);
+        mActionLeftTxt = customerActionBar.findViewById(R.id.txt_left);
+        mActionLeftImg = customerActionBar.findViewById(R.id.img_back);
+        RelativeLayout mActionRight = customerActionBar.findViewById(R.id.relative_right);
+        mActionRightImg = customerActionBar.findViewById(R.id.img_right);
+        mActionRightTxt = customerActionBar.findViewById(R.id.txt_right);
+        mnumCount = customerActionBar.findViewById(R.id.tv_numcount);
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT, Gravity.LEFT);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;

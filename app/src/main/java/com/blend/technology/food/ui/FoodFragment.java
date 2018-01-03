@@ -1,6 +1,7 @@
 package com.blend.technology.food.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,6 +33,7 @@ public class FoodFragment extends
     private List<String> titleList = new ArrayList<>();
     View headView;
     Banner mBanner;
+    private FoodAdapter foodAdapter;
 
     public static FoodFragment newInstance() {
         Bundle args = new Bundle();
@@ -45,11 +47,20 @@ public class FoodFragment extends
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
         mXRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL));
+        foodAdapter = new FoodAdapter(getActivity(), R.layout.fragment_food_item, dataList);
         headView = LayoutInflater.from(getActivity())
                 .inflate(R.layout.fragment_banner, null);
         mBanner = headView.findViewById(R.id.banner);
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         mXRecyclerView.addHeaderView(headView);
+        foodAdapter.setOnItemClickListener((view1, holder, position) -> {
+            FoodOut.Data data = foodAdapter.mDatas.get(position);
+            Intent intent = new Intent(getActivity(), FoodDetailActivity.class);
+            intent.putExtra("imgUrl", data.getImgUrl());
+            intent.putExtra("title", data.getTitle());
+            intent.putExtra("id", data.getId());
+            startActivity(intent);
+        });
     }
 
 
@@ -79,7 +90,7 @@ public class FoodFragment extends
 
     @Override
     protected PublicAdapter<FoodOut.Data> getAdapter() {
-        return new FoodAdapter(getActivity(), R.layout.fragment_food_item, dataList);
+        return foodAdapter;
     }
 
     @Override
