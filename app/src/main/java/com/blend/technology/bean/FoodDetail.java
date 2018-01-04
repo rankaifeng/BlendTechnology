@@ -2,11 +2,12 @@ package com.blend.technology.bean;
 
 import java.util.List;
 
-
-public class FoodOut {
+/**
+ * unknown on 2018/1/4.
+ */
+public class FoodDetail {
     private String msg;
-    List<Data> data;
-
+    private List<Data> data;
 
     public String getMsg() {
         return msg;
@@ -25,14 +26,20 @@ public class FoodOut {
     }
 
     public class Data {
-        private String title;
-        private String imgUrl;
         private String id;
         private String tags;
         private String imtro;
         private String ingredients;
         private String burden;
         private List<Steps> steps;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
 
         public String getTags() {
             return tags;
@@ -72,30 +79,6 @@ public class FoodOut {
 
         public void setSteps(List<Steps> steps) {
             this.steps = steps;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getImgUrl() {
-            return imgUrl;
-        }
-
-        public void setImgUrl(String imgUrl) {
-            this.imgUrl = imgUrl;
         }
     }
 

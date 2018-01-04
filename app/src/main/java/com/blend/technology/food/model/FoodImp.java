@@ -24,4 +24,11 @@ public class FoodImp extends BaseModel implements FoodContract.FoodModel {
         return RetrofitCreateHelper.createApi(FoodApi.class).getFood(page, record)
                 .compose(RxHelper.rxSchedulerHelper());
     }
+
+    @Override
+    public Observable<FoodOut> getFoodsDetail(String id) {
+        return RetrofitCreateHelper.createApi(FoodApi.class).getFoodDetail(id)
+                .compose(RxHelper.rxSchedulerHelper());
+    }
+
 }

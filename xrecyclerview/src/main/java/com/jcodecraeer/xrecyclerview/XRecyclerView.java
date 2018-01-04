@@ -62,7 +62,6 @@ public class XRecyclerView extends RecyclerView {
         super(context, attrs, defStyle);
         init();
     }
-
     private void init() {
         if (pullRefreshEnabled) {
             mRefreshHeader = new ArrowRefreshHeader(getContext());

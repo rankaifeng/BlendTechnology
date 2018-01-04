@@ -54,15 +54,19 @@ public class FoodFragment extends
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         mXRecyclerView.addHeaderView(headView);
         foodAdapter.setOnItemClickListener((view1, holder, position) -> {
-            FoodOut.Data data = foodAdapter.mDatas.get(position);
-            Intent intent = new Intent(getActivity(), FoodDetailActivity.class);
-            intent.putExtra("imgUrl", data.getImgUrl());
-            intent.putExtra("title", data.getTitle());
-            intent.putExtra("id", data.getId());
-            startActivity(intent);
+            intentActivity(position);
         });
+        mBanner.setOnBannerListener(this::intentActivity);
     }
 
+    private void intentActivity(int position) {
+        FoodOut.Data data = foodAdapter.mDatas.get(position);
+        Intent intent = new Intent(getActivity(), FoodDetailActivity.class);
+        intent.putExtra("imgUrl", data.getImgUrl());
+        intent.putExtra("title", data.getTitle());
+        intent.putExtra("id", data.getId());
+        startActivity(intent);
+    }
 
     @NonNull
     @Override
@@ -73,7 +77,7 @@ public class FoodFragment extends
 
     @Override
     public void requestSuccess(FoodOut foodOut) {
-        dataList = foodOut.getArrayList();
+        dataList = foodOut.getData();
         if (titleList.size() == 0 && imageViews.size() == 0) {
             for (int i = 0; i < 4; i++) {
                 titleList.add(dataList.get(i).getTitle());

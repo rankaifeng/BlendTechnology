@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.blend.technology.R;
 import com.blend.technology.adapter.PublicAdapter;
@@ -39,6 +40,8 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
     private String recyFlag;
     @BindView(R.id.fra_recycler)
     public XRecyclerView mXRecyclerView;
+    @BindView(R.id.btn_top)
+    Button btnTop;
     public PublicAdapter<T> mAdapter;
     boolean isShow = false;
 
@@ -54,14 +57,11 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
         showLoading();
         mAdapter = getAdapter();
         mXRecyclerView.setAdapter(mAdapter);
+        mXRecyclerView.getItemAnimator().setAddDuration(300);
         SpacesItemDecoration decoration = new SpacesItemDecoration(5);
         mXRecyclerView.addItemDecoration(decoration);
         recyFlag = REFRESH_FLAG;
         requestServiceData(PAGE, PAGE_NUMBER);
-//        ArrowRefreshHeader header = new ArrowRefreshHeader(getActivity());
-//        header.setProgressStyle(ProgressStyle.BallGridBeat);
-//        header.setArrowImageView(R.drawable.point_s);
-//        mXRecyclerView.setRefreshHeader(header);
         mXRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
@@ -78,6 +78,7 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
                 requestServiceData(PAGE, PAGE_NUMBER);
             }
         });
+        btnTop.setOnClickListener(view -> mXRecyclerView.smoothScrollToPosition(0));
     }
 
     /**

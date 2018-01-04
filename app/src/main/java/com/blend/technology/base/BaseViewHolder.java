@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 public class BaseViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> viewArray;
     private View mItemView;
@@ -108,5 +109,4 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         ImageView iv = getView(viewId);
         iv.setImageDrawable(drawable);
     }
-
 }

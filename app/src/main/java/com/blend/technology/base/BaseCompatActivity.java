@@ -67,12 +67,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressedSupport();
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> onBackPressedSupport());
     }
 
     public void showToast(String msg) {

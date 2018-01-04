@@ -10,14 +10,8 @@ import com.blend.technology.global.MyApplication;
 import com.blend.technology.utils.DisplayUtils;
 import com.blend.technology.utils.StatusBarUtils;
 
-/**
- * Created by Horrarndoo on 2017/10/19.
- * <p>
- * 自定义NestedScrollView，主要实现根据滑动距离控制绑定View的alpha值
- */
 
 public class CompatNestedScrollView extends NestedScrollView {
-    private ViewGroup childViewGroup;
     private View headView;
     private View bindView;
 
@@ -40,7 +34,7 @@ public class CompatNestedScrollView extends NestedScrollView {
             throw new IllegalArgumentException("only can 1 child in this view");
         } else {
             if (getChildAt(0) instanceof ViewGroup) {
-                childViewGroup = (ViewGroup) getChildAt(0);
+                ViewGroup childViewGroup = (ViewGroup) getChildAt(0);
                 if (childViewGroup != null) {
                     headView = childViewGroup.getChildAt(0);
                 }
@@ -58,8 +52,8 @@ public class CompatNestedScrollView extends NestedScrollView {
             //如果上滑超过toolbar高度，开启伴随动画
             //Logger.e("t = " + t);
             //Logger.e("headView.getHeight = " + headView.getHeight());
-            float slideValue = t - (DisplayUtils.dp2px(56) + StatusBarUtils.getStatusBarHeight
-                    (MyApplication.getContext()));
+            float slideValue = t - (DisplayUtils.dp2px(56) +
+                    StatusBarUtils.getStatusBarHeight(MyApplication.getContext()));
 
             if (slideValue < 0)
                 slideValue = 0;
