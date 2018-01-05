@@ -59,9 +59,9 @@ public class FoodDetailActivity extends
         return R.layout.activity_food_detil;
     }
 
-
     @Override
-    public void initV() {
+    protected void initView() {
+        super.initView();
         if (getIntent() != null) {
             imgUrl = getIntent().getStringExtra("imgUrl");
             title = getIntent().getStringExtra("title");
@@ -83,6 +83,7 @@ public class FoodDetailActivity extends
         adapter = new FoodDetailAdapter(this, R.layout.activity_food_detil_item, stepsList);
         mRecyclerView.setAdapter(adapter);
     }
+
 
     @Override
     protected void onStart() {

@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public class WelcomePagerAdapter extends PagerAdapter {
-    List<View> viewList;
+    private List<View> viewList;
 
     public WelcomePagerAdapter(List<View> viewList) {
         this.viewList = viewList;

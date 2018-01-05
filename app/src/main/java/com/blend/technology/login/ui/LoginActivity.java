@@ -38,7 +38,8 @@ public class LoginActivity extends BaseMVPCompatActivity<LoginContract.LoginPres
     }
 
     @Override
-    public void initV() {
+    protected void initView() {
+        super.initView();
         blurrImg.setBlurredLevel(Config.TAG_NUMBER);
         btnLogin.setOnClickListener(v -> {
             editStrName = editLoginName.getText().toString();
@@ -57,6 +58,7 @@ public class LoginActivity extends BaseMVPCompatActivity<LoginContract.LoginPres
             mIPresenter.login(LoginActivity.this, loginIn);
         });
     }
+
 
     @Override
     public void loginSuess(LoginOut userInfoOut) {

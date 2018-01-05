@@ -1,6 +1,5 @@
 package com.blend.technology.food.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -42,9 +41,9 @@ public class FoodFragment extends
         return fragment;
     }
 
-    @SuppressLint("InflateParams")
     @Override
-    public void initUI(View view, @Nullable Bundle savedInstanceState) {
+    protected void initView(View view, @Nullable Bundle savedInstanceState) {
+        super.initView(view, savedInstanceState);
         mXRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL));
         foodAdapter = new FoodAdapter(getActivity(), R.layout.fragment_food_item, dataList);

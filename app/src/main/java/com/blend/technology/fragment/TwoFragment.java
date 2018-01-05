@@ -2,16 +2,13 @@ package com.blend.technology.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.blend.technology.R;
+import com.blend.technology.base.BaseCompatFragment;
 
-import me.yokeyword.fragmentation.SupportFragment;
 
-
-public class TwoFragment extends SupportFragment {
+public class TwoFragment extends BaseCompatFragment {
 
     public static TwoFragment newInstance() {
         Bundle args = new Bundle();
@@ -20,17 +17,13 @@ public class TwoFragment extends SupportFragment {
         return fragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_two, null);
-        return view;
+    public int getLayoutId() {
+        return R.layout.fragment_two;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
 
+    @Override
+    protected void initView(View view, @Nullable Bundle savedInstanceState) {
     }
 }

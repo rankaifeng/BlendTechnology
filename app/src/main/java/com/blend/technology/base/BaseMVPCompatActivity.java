@@ -12,7 +12,6 @@ public abstract class BaseMVPCompatActivity<P extends BasePresenter, M extends I
 
     @Override
     protected void initView() {
-        initV();
         mIPresenter = (P) initPresenter();
         if (mIPresenter != null) {
             mIModel = (M) mIPresenter.getModel();
@@ -22,7 +21,6 @@ public abstract class BaseMVPCompatActivity<P extends BasePresenter, M extends I
         }
     }
 
-    public abstract void initV();
 
     @Override
     protected void onDestroy() {

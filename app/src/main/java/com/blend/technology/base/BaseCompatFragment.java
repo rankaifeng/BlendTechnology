@@ -33,7 +33,6 @@ public abstract class BaseCompatFragment extends SupportFragment {
     public void onAttach(Context context) {
         mActivity = (Activity) context;
         mContext = context;
-        initView();
         super.onAttach(context);
     }
 
@@ -55,7 +54,8 @@ public abstract class BaseCompatFragment extends SupportFragment {
         TAG = getClass().getSimpleName();
         binder = ButterKnife.bind(this, view);
         getBundle(getArguments());
-        initUI(view, savedInstanceState);
+        initView(view, savedInstanceState);
+//        initUI(view, savedInstanceState);
     }
 
     @Override
@@ -91,7 +91,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
     /**
      * 初始化UI
      */
-    public abstract void initUI(View view, @Nullable Bundle savedInstanceState);
+//    public abstract void initUI(View view, @Nullable Bundle savedInstanceState);
 
     /**
      * 处理回退事件
@@ -112,7 +112,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
         return true;
     }
 
-    abstract void initView();
+    protected abstract void initView(View view, @Nullable Bundle savedInstanceState);
 
     public void showToast(String msg) {
         showToast(msg, true);
