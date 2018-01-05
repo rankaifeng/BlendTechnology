@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@mipmap/flash"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:id="@+id/lin_change"
         android:layout_width="85dp"
         android:layout_height="35dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="35dp"
         android:background="@drawable/shape_count_down_bg"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,7 +72,8 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/lin_point"
@@ -76,7 +82,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
         android:gravity="center"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btn_go"
