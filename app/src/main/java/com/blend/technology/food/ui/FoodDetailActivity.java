@@ -15,6 +15,7 @@ import com.blend.technology.base.BasePresenter;
 import com.blend.technology.bean.FoodOut;
 import com.blend.technology.food.contract.FoodContract;
 import com.blend.technology.food.presenter.FoodPresenter;
+import com.blend.technology.utils.SpacesItemDecoration;
 import com.blend.technology.widgets.CompatNestedScrollView;
 import com.bumptech.glide.Glide;
 
@@ -78,9 +79,11 @@ public class FoodDetailActivity extends
                 ivToolbarBg.getLayoutParams();
         int marginTop = ivToolbarBg.getLayoutParams().height - headerBgHeight;
         ivTitleHeadBgParams.setMargins(0, -marginTop, 0, 0);
-
+        mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FoodDetailAdapter(this, R.layout.activity_food_detil_item, stepsList);
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(this, LinearLayoutManager.VERTICAL,
+                R.drawable.recy_item, 0));
         mRecyclerView.setAdapter(adapter);
     }
 

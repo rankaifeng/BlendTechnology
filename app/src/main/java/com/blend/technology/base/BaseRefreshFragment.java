@@ -12,7 +12,6 @@ import android.widget.Button;
 import com.blend.technology.R;
 import com.blend.technology.adapter.PublicAdapter;
 import com.blend.technology.model.IBaseModel;
-import com.blend.technology.utils.SpacesItemDecoration;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -58,8 +57,8 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
         mAdapter = getAdapter();
         mXRecyclerView.setAdapter(mAdapter);
         mXRecyclerView.getItemAnimator().setAddDuration(300);
-        SpacesItemDecoration decoration = new SpacesItemDecoration(5);
-        mXRecyclerView.addItemDecoration(decoration);
+//        SpacesItemDecoration decoration = new SpacesItemDecoration(5);
+//        mXRecyclerView.addItemDecoration(decoration);
         recyFlag = REFRESH_FLAG;
         requestServiceData(PAGE, PAGE_NUMBER);
         mXRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
