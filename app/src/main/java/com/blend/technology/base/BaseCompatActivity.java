@@ -46,9 +46,9 @@ public abstract class BaseCompatActivity extends SupportActivity {
         changTitleBar();
         setContentView(getLayout());
         ButterKnife.bind(this);
-        if (isShow) {
-            defaultActionBar();
-        }
+//        if (isShow) {
+//            defaultActionBar();
+//        }
         initView();
     }
 

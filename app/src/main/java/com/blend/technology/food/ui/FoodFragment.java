@@ -18,6 +18,7 @@ import com.blend.technology.bean.FoodOut;
 import com.blend.technology.food.contract.FoodContract;
 import com.blend.technology.food.presenter.FoodPresenter;
 import com.blend.technology.utils.GlideImageLoader;
+import com.blend.technology.utils.SpacesItemDecoration;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
@@ -51,6 +52,7 @@ public class FoodFragment extends
         mBanner = headView.findViewById(R.id.banner);
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         mXRecyclerView.addHeaderView(headView);
+        mXRecyclerView.addItemDecoration(new SpacesItemDecoration(10));
         foodAdapter.setOnItemClickListener((view1, holder, position) -> {
             intentActivity(position);
         });
@@ -105,6 +107,12 @@ public class FoodFragment extends
     @Override
     protected void requestServiceData(int page, int record) {
         mIPresenter.getFoods(this, page, record);
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        mIPresenter.getFoods(this, PAGE, PAGE_NUMBER);
     }
 
     @Override

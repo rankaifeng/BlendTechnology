@@ -2,17 +2,13 @@ package com.blend.technology.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.blend.technology.R;
+import com.blend.technology.base.BaseCompatFragment;
 
-import me.yokeyword.fragmentation.SupportFragment;
 
-
-public class ThreeFragment extends SupportFragment {
+public class ThreeFragment extends BaseCompatFragment {
 
     public static ThreeFragment newInstance() {
         Bundle args = new Bundle();
@@ -21,18 +17,19 @@ public class ThreeFragment extends SupportFragment {
         return fragment;
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_three, null);
-        Log.i("ThreeFragment","111111111111111");
-        return view;
+    public int getLayoutId() {
+        return R.layout.fragment_three;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void initView(View view, @Nullable Bundle savedInstanceState) {
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
 
     }
 }

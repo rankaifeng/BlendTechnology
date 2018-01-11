@@ -15,9 +15,9 @@ import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
 
 public class MainActivity extends BaseCompatActivity {
-    public static final int FOOD = 0;
-    public static final int ONE = 1;
-    public static final int TWO = 2;
+    public static final int FOOD  = 0;
+    public static final int ONE   = 1;
+    public static final int TWO   = 2;
     public static final int THREE = 3;
     @BindView(R.id.bottom_naviga)
     BottomNavigationView bottomNavigate;
@@ -31,7 +31,7 @@ public class MainActivity extends BaseCompatActivity {
 
     @Override
     protected void initView() {
-        showActionTitleOnly("首页");
+//        showActionTitleOnly("首页");
         BottomNavigationViewHelper.disableShiftMode(bottomNavigate);
         initFragment();
     }

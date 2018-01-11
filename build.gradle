@@ -32,8 +32,9 @@ ext {
             versionName      : '1.0.0',
             versionCode      : 1
     ]
-    supportV7Version='26.1.0'
-    supportLibraryVersion = '25.3.0'
+    supportV7Version='26.0.2'
+    buildToolsVersion = '23.0.2'
+    supportLibraryVersion = '26.0.2'
     retrofitVersion = '2.2.0'
     okhttploggingVersion = '3.4.1'
     okhttpVersion = '3.4.1'

@@ -17,7 +17,7 @@ public abstract class PublicAdapter<T> extends RecyclerView.Adapter<BaseViewHold
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
 
-    PublicAdapter(Context context, int layoutId, List<T> datas) {
+    protected PublicAdapter(Context context, int layoutId, List<T> datas) {
         mContext = context;
         mLayoutId = layoutId;
         mDatas = datas;

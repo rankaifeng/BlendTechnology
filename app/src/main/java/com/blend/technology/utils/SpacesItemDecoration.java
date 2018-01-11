@@ -27,6 +27,11 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
     private int inset;
 
     private Paint paint;
+    private int   space;
+
+    public SpacesItemDecoration(int space) {
+        this.space = space;
+    }
 
     /**
      * @param context
@@ -54,10 +59,12 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
-        if (mOrientation == VERTICAL_LIST) {
-            drawVertical(c, parent);
-        } else {
-            drawHorizontal(c, parent);
+        if (mDivider != null) {
+            if (mOrientation == VERTICAL_LIST) {
+                drawVertical(c, parent);
+            } else {
+                drawHorizontal(c, parent);
+            }
         }
     }
 
@@ -98,13 +105,22 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    //由于Divider也有宽高，每一个Item需要向下或者向右偏移
     @Override
-    public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
-        if (mOrientation == VERTICAL_LIST) {
-            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
-        } else {
-            outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        super.getItemOffsets(outRect, view, parent, state);
+        if (mDivider != null) {
+            if (mOrientation == VERTICAL_LIST) {
+                outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+            } else {
+                outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
+            }
+            return;
         }
+        outRect.left = space;
+        outRect.right = space;
+        outRect.bottom = space;
+        // Add top margin only for the first item to avoid double space between items
+        if (parent.getChildPosition(view) == 0)
+            outRect.top = space;
     }
 }

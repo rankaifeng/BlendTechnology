@@ -34,8 +34,8 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
         extends BaseMVPCompatFragment<P, M> {
     private static final String REFRESH_FLAG = "refresh";//下拉刷新标识
     private static final String LOADMORE_FLAG = "loadMore";//上拉加载更多标识
-    private static int PAGE = 1;//要显示的页数
-    private static int PAGE_NUMBER = 10;//每一页要显示的条数
+    public static int PAGE = 1;//要显示的页数
+    public static int PAGE_NUMBER = 10;//每一页要显示的条数
     private String recyFlag;
     @BindView(R.id.fra_recycler)
     public XRecyclerView mXRecyclerView;
@@ -60,7 +60,6 @@ public abstract class BaseRefreshFragment<T, P extends BasePresenter, M extends 
 //        SpacesItemDecoration decoration = new SpacesItemDecoration(5);
 //        mXRecyclerView.addItemDecoration(decoration);
         recyFlag = REFRESH_FLAG;
-        requestServiceData(PAGE, PAGE_NUMBER);
         mXRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
