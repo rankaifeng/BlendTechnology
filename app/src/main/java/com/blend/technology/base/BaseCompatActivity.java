@@ -3,6 +3,7 @@ package com.blend.technology.base;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -24,18 +25,18 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 
 public abstract class BaseCompatActivity extends SupportActivity {
-    private static final String CLASS_NAME = "FlashActivity";
+    private static final String CLASS_NAME       = "FlashActivity";
     private static final String CLASS_NAME_LOGIN = "LoginActivity";
-    private static final String CLASS_NAME_FOOD = "FoodDetailActivity";
-    private TextView mActionTitle;
+    private static final String CLASS_NAME_FOOD  = "FoodDetailActivity";
+    private TextView  mActionTitle;
     private ImageView mActionLeftImg;
-    private TextView mActionLeftTxt;
+    private TextView  mActionLeftTxt;
     private ImageView mActionRightImg;
-    private TextView mActionRightTxt;
-    private TextView mnumCount;
+    private TextView  mActionRightTxt;
+    private TextView  mnumCount;
     //左侧是否可以返回
     protected boolean mCanGoBack = true;
-    protected boolean isShow = false;
+    protected boolean isShow     = false;
     Dialog progressDlg;
     Toast toast = null;
 
@@ -99,8 +100,8 @@ public abstract class BaseCompatActivity extends SupportActivity {
         switch (childClassName) {
             case CLASS_NAME:
             case CLASS_NAME_LOGIN:
-//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                //            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                //                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 ViewUtil.initSystemBar(this, Color.TRANSPARENT);
                 break;
             case CLASS_NAME_FOOD:
@@ -108,7 +109,9 @@ public abstract class BaseCompatActivity extends SupportActivity {
                 break;
             default:
                 isShow = true;
-                ViewUtil.initSystemBar(this, R.color.colorPrimary);
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
+                    ViewUtil.initSystemBar(this, R.color.colorPrimary);
+                }
                 break;
         }
     }

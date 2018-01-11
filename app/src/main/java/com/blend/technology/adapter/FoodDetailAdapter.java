@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class FoodDetailAdapter extends PublicAdapter<FoodOut.Steps> {
     private List<FoodOut.Steps> stepsList;
-    private Context mContext;
+    private Context             mContext;
 
     public FoodDetailAdapter(Context context, int layoutId, List<FoodOut.Steps> datas) {
         super(context, layoutId, datas);

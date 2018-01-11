@@ -3,6 +3,7 @@ package com.blend.technology.base;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -22,10 +23,10 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 public abstract class BaseCompatFragment extends SupportFragment {
 
-    protected String TAG;
-    protected Context mContext;
+    protected String   TAG;
+    protected Context  mContext;
     protected Activity mActivity;
-    private Unbinder binder;
+    private   Unbinder binder;
     private Toast toast = null;
     Dialog progressDlg;
 
@@ -55,7 +56,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
         binder = ButterKnife.bind(this, view);
         getBundle(getArguments());
         initView(view, savedInstanceState);
-//        initUI(view, savedInstanceState);
+        //        initUI(view, savedInstanceState);
     }
 
     @Override
@@ -91,7 +92,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
     /**
      * 初始化UI
      */
-//    public abstract void initUI(View view, @Nullable Bundle savedInstanceState);
+    //    public abstract void initUI(View view, @Nullable Bundle savedInstanceState);
 
     /**
      * 处理回退事件
@@ -145,5 +146,11 @@ public abstract class BaseCompatFragment extends SupportFragment {
         if (progressDlg != null && progressDlg.isShowing()) {
             progressDlg.dismiss();
         }
+    }
+
+    public void startActivity(Bundle mBundle, Class<?> mClass) {
+        Intent intent = new Intent(getActivity(), mClass);
+        intent.putExtras(mBundle);
+        startActivity(intent);
     }
 }

@@ -1,6 +1,6 @@
 package com.blend.technology.food.ui;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +13,7 @@ import com.blend.technology.adapter.FoodAdapter;
 import com.blend.technology.adapter.PublicAdapter;
 import com.blend.technology.base.BasePresenter;
 import com.blend.technology.base.BaseRefreshFragment;
+import com.blend.technology.base.MyBanner;
 import com.blend.technology.bean.FoodOut;
 import com.blend.technology.food.contract.FoodContract;
 import com.blend.technology.food.presenter.FoodPresenter;
@@ -27,10 +28,9 @@ import java.util.List;
 public class FoodFragment extends
         BaseRefreshFragment<FoodOut.Data, FoodContract.FoodPresenter, FoodContract.FoodModel>
         implements FoodContract.FoodView {
-    private List<FoodOut.Data> dataList = new ArrayList<>();
-    private List<String> imageViews = new ArrayList<>();
-    private List<String> titleList = new ArrayList<>();
-    View headView;
+    private List<FoodOut.Data> dataList   = new ArrayList<>();
+    private List<String>       imageViews = new ArrayList<>();
+    private List<String>       titleList  = new ArrayList<>();
     Banner mBanner;
     private FoodAdapter foodAdapter;
 
@@ -47,8 +47,7 @@ public class FoodFragment extends
         mXRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL));
         foodAdapter = new FoodAdapter(getActivity(), R.layout.fragment_food_item, dataList);
-        headView = LayoutInflater.from(getActivity())
-                .inflate(R.layout.fragment_banner, null);
+        View headView = getHeadView();
         mBanner = headView.findViewById(R.id.banner);
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         mXRecyclerView.addHeaderView(headView);
@@ -58,13 +57,18 @@ public class FoodFragment extends
         mBanner.setOnBannerListener(this::intentActivity);
     }
 
+    @SuppressLint("InflateParams")
+    private View getHeadView() {
+        return LayoutInflater.from(getActivity()).inflate(R.layout.fragment_banner, null);
+    }
+
     private void intentActivity(int position) {
         FoodOut.Data data = foodAdapter.mDatas.get(position);
-        Intent intent = new Intent(getActivity(), FoodDetailActivity.class);
-        intent.putExtra("imgUrl", data.getImgUrl());
-        intent.putExtra("title", data.getTitle());
-        intent.putExtra("id", data.getId());
-        startActivity(intent);
+        Bundle bundle = new Bundle();
+        bundle.putString("imgUrl", data.getImgUrl());
+        bundle.putString("title", data.getTitle());
+        bundle.putString("id", data.getId());
+        startActivity(bundle, FoodDetailActivity.class);
     }
 
     @NonNull
@@ -83,10 +87,12 @@ public class FoodFragment extends
                 imageViews.add(dataList.get(i).getImgUrl());
             }
         }
-        mBanner.setBannerTitles(titleList);
-        mBanner.setImageLoader(new GlideImageLoader());
-        mBanner.setImages(imageViews);
-        mBanner.start();
+        MyBanner.Builder builder = new MyBanner.Builder();
+        builder.mBanner(mBanner)
+                .bannerTitls(titleList)
+                .images(imageViews)
+                .imageLoader(new GlideImageLoader())
+                .build().start();
         requestSuccess(dataList);
     }
 

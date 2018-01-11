@@ -53,12 +53,12 @@ public class SystemBarTintManager {
     private static String sNavBarOverride;
 
     private final SystemBarConfig mConfig;
-    private boolean mStatusBarAvailable;
-    private boolean mNavBarAvailable;
-    private boolean mStatusBarTintEnabled;
-    private boolean mNavBarTintEnabled;
-    private View mStatusBarTintView;
-    private View mNavBarTintView;
+    private       boolean         mStatusBarAvailable;
+    private       boolean         mNavBarAvailable;
+    private       boolean         mStatusBarTintEnabled;
+    private       boolean         mNavBarTintEnabled;
+    private       View            mStatusBarTintView;
+    private       View            mNavBarTintView;
 
     /**
      * Constructor. Call this in the host activity onCreate method after its
@@ -339,21 +339,21 @@ public class SystemBarTintManager {
      */
     public static class SystemBarConfig {
 
-        private static final String STATUS_BAR_HEIGHT_RES_NAME = "status_bar_height";
-        private static final String NAV_BAR_HEIGHT_RES_NAME = "navigation_bar_height";
+        private static final String STATUS_BAR_HEIGHT_RES_NAME        = "status_bar_height";
+        private static final String NAV_BAR_HEIGHT_RES_NAME           = "navigation_bar_height";
         private static final String NAV_BAR_HEIGHT_LANDSCAPE_RES_NAME = "navigation_bar_height_landscape";
-        private static final String NAV_BAR_WIDTH_RES_NAME = "navigation_bar_width";
-        private static final String SHOW_NAV_BAR_RES_NAME = "config_showNavigationBar";
+        private static final String NAV_BAR_WIDTH_RES_NAME            = "navigation_bar_width";
+        private static final String SHOW_NAV_BAR_RES_NAME             = "config_showNavigationBar";
 
         private final boolean mTranslucentStatusBar;
         private final boolean mTranslucentNavBar;
-        private final int mStatusBarHeight;
-        private final int mActionBarHeight;
+        private final int     mStatusBarHeight;
+        private final int     mActionBarHeight;
         private final boolean mHasNavigationBar;
-        private final int mNavigationBarHeight;
-        private final int mNavigationBarWidth;
+        private final int     mNavigationBarHeight;
+        private final int     mNavigationBarWidth;
         private final boolean mInPortrait;
-        private final float mSmallestWidthDp;
+        private final float   mSmallestWidthDp;
 
         private SystemBarConfig(Activity activity, boolean translucentStatusBar, boolean traslucentNavBar) {
             Resources res = activity.getResources();

@@ -1,10 +1,12 @@
 package com.blend.technology.utils;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -13,22 +15,39 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewUtil {
 
-
+    @SuppressLint("PrivateApi")
     public static void initSystemBar(Activity activity, int res) {
-
-        ActionBar actionBar = activity.getActionBar();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
+                Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
             setTranslucentStatus(activity, true);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            //去除半透明状态栏
+            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //一般配合fitsSystemWindows()使用, 或者在根部局加上属性android:fitsSystemWindows="true", 使根部局全屏显示
+            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            activity.getWindow().setStatusBarColor(res);
+            try {
+                Class decorViewClazz = Class.forName("com.android.internal.policy.DecorView");
+                Field field = decorViewClazz.getDeclaredField("mSemiTransparentStatusBarColor");
+                field.setAccessible(true);
+                //改为透明
+                field.setInt(activity.getWindow().getDecorView(), Color.TRANSPARENT);
+            } catch (Exception e) {
+                Log.i("Exception", e.getMessage());
+            }
         }
         SystemBarTintManager tintManager = new SystemBarTintManager(activity);
         tintManager.setStatusBarTintEnabled(true);
-        // 使用颜色资源
+        //设置系统栏设置颜色
+        tintManager.setTintColor(res);
+        //给导航栏设置资源
+        tintManager.setNavigationBarTintResource(res);
         tintManager.setStatusBarTintResource(res);
 
     }
@@ -108,7 +127,6 @@ public class ViewUtil {
      * 获取ViewGroup中的NumberPicker组件
      *
      * @param viewGroup
-     *
      * @return
      */
     private static List<NumberPicker> findNumberPicker(ViewGroup viewGroup) {

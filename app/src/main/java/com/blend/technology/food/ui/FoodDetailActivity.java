@@ -1,6 +1,7 @@
 package com.blend.technology.food.ui;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -34,23 +35,23 @@ public class FoodDetailActivity extends
         BaseMVPCompatActivity<FoodContract.FoodPresenter, FoodContract.FoodModel>
         implements FoodContract.FoodView {
     @BindView(R.id.img_food_detail)
-    ImageView imgFoodDetail;
+    ImageView              imgFoodDetail;
     @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    Toolbar                toolbar;
     @BindView(R.id.nsv_scrollview)
     CompatNestedScrollView nsvScrollview;
     @BindView(R.id.iv_toolbar_bg)
-    ImageView ivToolbarBg;
+    ImageView              ivToolbarBg;
     @BindView(R.id.tv_food_detail_tag)
-    TextView tvFoodDetailTag;
+    TextView               tvFoodDetailTag;
     @BindView(R.id.tv_food_detail_imtro)
-    TextView tvFoodDetailImtro;
+    TextView               tvFoodDetailImtro;
     @BindView(R.id.tv_food_detail_burden)
-    TextView tvFoodDetailBurden;
+    TextView               tvFoodDetailBurden;
     @BindView(R.id.frg_food_detail_recycler_steps)
-    RecyclerView mRecyclerView;
+    RecyclerView           mRecyclerView;
     @BindView(R.id.tv_food_detail_ingredients)
-    TextView tvFoodDetailIngredients;
+    TextView               tvFoodDetailIngredients;
     private String id, imgUrl, title;
     private FoodDetailAdapter adapter;
     private List<FoodOut.Steps> stepsList = new ArrayList<>();
@@ -63,10 +64,11 @@ public class FoodDetailActivity extends
     @Override
     protected void initView() {
         super.initView();
-        if (getIntent() != null) {
-            imgUrl = getIntent().getStringExtra("imgUrl");
-            title = getIntent().getStringExtra("title");
-            id = getIntent().getStringExtra("id");
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            imgUrl = bundle.getString("imgUrl");
+            title = bundle.getString("title");
+            id = bundle.getString("id");
         }
         initTitleBar(toolbar, title);
         nsvScrollview.bindAlphaView(ivToolbarBg);
